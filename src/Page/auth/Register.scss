@@ -1,0 +1,155 @@
+.login-container {
+    background-color: #b4cebb;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+
+    .content-container {
+        margin-left: auto;
+        margin-right: auto;
+
+        .comtent-left {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            .store-title {
+                color: #c73030;
+                font-weight: 800;
+                font-size: 50px;
+            }
+
+        }
+
+        .content-right {
+
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            .form-container {
+                align-items: center;
+                background-color: #fff;
+                border: none;
+                border-radius: 8px;
+                box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+                box-sizing: border-box;
+                width: 400px;
+
+                .form-group {
+                    position: relative;
+                    margin: 16px auto;
+                    width: 80%;
+
+                    input {
+                        width: 100%;
+                        height: 40px;
+                    }
+
+                    i {
+                        position: absolute;
+                        right: 15px;
+                        top: 8px;
+                    }
+                }
+
+                .btn-background {
+                    width: 80%;
+                    margin: 0 auto;
+                }
+
+                .btn-login {
+                    margin: 0 auto;
+                    width: 100%;
+                    background-color: #c73030;
+                    color: #fff;
+                    font-size: 20px;
+                    font-weight: 600;
+                }
+
+                .forgot-password {
+                    width: 95%;
+                    text-align: center;
+                    margin: 8px auto 0;
+                    cursor: pointer;
+                    border-bottom: 1px solid #ddd;
+                    padding-bottom: 16px;
+
+                    a {
+                        text-decoration: none;
+                    }
+
+                    a:hover {
+                        text-decoration: underline;
+                    }
+                }
+
+                .footer {
+                    width: 50%;
+                    margin: 30px auto;
+
+                    .btn-register {
+                        width: 100%;
+                        background-color: #ec7709;
+                        font-size: 18px;
+                        font-weight: 600;
+                        color: #fff;
+                        height: 44px;
+
+                    }
+                }
+            }
+
+        }
+    }
+
+    @media (max-width: 480px) {
+        .content-container {
+            display: flex;
+            flex-direction: column;
+
+            .comtent-left {
+                width: 100%;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+
+                .store-title {
+                    font-weight: 800;
+                    font-size: 40px;
+                }
+            }
+
+            .content-right {
+                width: 100%;
+                display: block;
+
+                .form-container {
+                    padding: 16px 0;
+                    height: fit-content;
+                    width: 95%;
+                    margin-left: auto;
+                    margin-right: auto;
+
+                    .footer {
+                        width: 60%;
+                        margin: 24px auto;
+
+                        .btn-register {
+                            width: 100%;
+                            background-color: #ec7709;
+                            font-size: 18px;
+                            font-weight: 600;
+                            color: #fff;
+                            height: 44px;
+
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+}

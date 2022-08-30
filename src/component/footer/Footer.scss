@@ -1,0 +1,21 @@
+.footer-container {
+    .footer-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .footer-title {
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            padding: 16px 0;
+
+            p {
+                margin: auto;
+            }
+
+        }
+    }
+}
