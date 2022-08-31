@@ -17,6 +17,7 @@ const persistConfig = {
   key: "root",
   version: 1,
   storage,
+
 };
 
 const rootReducer = combineReducers({ auth: authReducer, users: userReducer }); // sửa chỗ này

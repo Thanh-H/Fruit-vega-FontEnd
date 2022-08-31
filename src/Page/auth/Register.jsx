@@ -16,7 +16,19 @@ export const Register = () => {
     let dispatch = useDispatch()
     let navigate = useNavigate()
     let handleRegister = () => {
-        registerUSer(userName, email, password, dispatch, navigate)
+        var isValid = true
+        let arr = [userName, email, password]
+        for (let i = 0; i < arr.length; i++) {
+
+            if (arr[i] === '') {
+                alert('missing parameter')
+                isValid = false
+                break;
+            }
+
+        }
+        if (isValid === true) { registerUSer(userName, email, password, dispatch, navigate) }
+
     }
     let hanleShowPassword = () => {
         setShowPassword(!showPassword)
@@ -41,7 +53,7 @@ export const Register = () => {
                                     onChange={(e) => { setUserName(e.target.value) }} />
                             </div>
                             <div className="form-group ">
-                                <input placeholder='Email' type="text" className="from-control"
+                                <input placeholder='Email' type="email" className="from-control"
                                     onChange={(e) => { setEmai(e.target.value) }} />
                             </div>
                             <div className=" form-group">

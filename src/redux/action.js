@@ -1,14 +1,19 @@
-import { handleLoginService, handleRegisterService } from '../service/userService'
+import {
+  handleLoginService, handleRegisterService, handleLogOutService,
+  getAllUserService
+} from '../service/userService'
 import {
   loginFailed, loginStart, loginSuccess,
   registerStart, registerSuccess, registerFailed,
-  logoutStart, logOutSuccess, logoutFailed
+  logOutStart, logOutSuccess, logOutFailed
 } from "./authSlice";
 
 import {
-  clearUserList, deleteUsersFailed, deleteUsersStart,
-  deleteUsersSuccess, getUsersFailed, getUsersStart, getUsersSuccess
+  getAllUsersSuccess, getAllUsersFailed,
+  deleteUsersSuccess, deleteUserFailed
 } from "./userSlice";
+
+import axios from 'axios'
 
 export const loginUser = async (email, password, dispatch, navigate) => {
   dispatch(loginStart());
@@ -33,3 +38,30 @@ export const registerUSer = async (userName, email, password, dispatch, navigate
     dispatch(registerFailed())
   }
 }
+
+export const logOutUser = async (id, accessToken, dispatch, navigate) => {
+  dispatch(logOutStart())
+  try {
+    let res = await handleLogOutService(id, accessToken)
+    if (res && res.errCode === 0) {
+      dispatch(logOutSuccess())
+      navigate('/login')
+    }
+  } catch (error) {
+    dispatch(logOutFailed())
+  }
+
+}
+
+export const getAllUser = async (accessToken, dispatch) => {
+  try {
+    let res = await getAllUserService(accessToken)
+    if (res && res.errCode === 0) {
+      dispatch(getAllUsersSuccess())
+    }
+  } catch (error) {
+    dispatch(getAllUsersFailed())
+  }
+}
+
+
