@@ -1,6 +1,6 @@
 import {
   handleLoginService, handleRegisterService, handleLogOutService,
-  getAllUserService
+  getAllUserService, deleteUserService
 } from '../service/userService'
 import {
   loginFailed, loginStart, loginSuccess,
@@ -12,8 +12,7 @@ import {
   getAllUsersSuccess, getAllUsersFailed,
   deleteUsersSuccess, deleteUserFailed
 } from "./userSlice";
-
-import axios from 'axios'
+import { toast } from 'react-toastify';
 
 export const loginUser = async (email, password, dispatch, navigate) => {
   dispatch(loginStart());
@@ -53,15 +52,46 @@ export const logOutUser = async (id, accessToken, dispatch, navigate) => {
 
 }
 
-export const getAllUser = async (accessToken, dispatch) => {
+export const getAllUser = async (dispatch) => {
   try {
-    let res = await getAllUserService(accessToken)
+    let res = await getAllUserService()
     if (res && res.errCode === 0) {
-      dispatch(getAllUsersSuccess())
+      dispatch(getAllUsersSuccess(res.data))
     }
   } catch (error) {
     dispatch(getAllUsersFailed())
   }
 }
 
+export const deleteUser = async (id, dispatch, accessToken) => {
+  try {
+    let res = await deleteUserService(id, accessToken)
+    if (res && res.errCode === 0) {
+      toast.success('Delete user succeed!')
+      dispatch(deleteUsersSuccess())
+    }
+    else {
+      toast.error('Delete user failed!')
+    }
+  } catch (error) {
+    toast.error('Delete user failed!')
+    dispatch(deleteUserFailed())
+  }
+}
+
+export const CreateUser = async (userName, email, password, role) => {
+  try {
+    let res = await handleRegisterService(userName, email, password, role)
+    console.log(res)
+    if (res && res.errCode === 0) {
+      toast.success('create user succeed!')
+    }
+    else {
+      toast.error('Create user failed!')
+    }
+  } catch (error) {
+
+    console.log(error)
+  }
+}
 
