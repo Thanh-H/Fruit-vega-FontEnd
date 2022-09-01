@@ -1,0 +1,150 @@
+.sidebar-container {
+    .site-overlay {
+        background: rgba(0, 0, 0, 0.8);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 101;
+        animation: fadeIn linear 0.7s;
+    }
+
+    .sidebar-container-content {
+        position: fixed;
+        right: 0;
+        top: 0;
+        height: 100vh;
+        width: 450px;
+        background-color: white;
+        z-index: 102;
+        overflow: hidden;
+        animation: identifier linear 0.4s;
+    }
+
+
+    @keyframes identifier {
+        from {
+            transform: translateX(+100%);
+            opacity: 0;
+        }
+
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .sidebar-container-content {
+            width: 80%;
+        }
+    }
+
+    .menu-container {
+        margin: 0 auto;
+        width: 90%;
+        margin-top: 7vh;
+        height: 90vh;
+        border: 1px solid red;
+
+        .top-content {
+            margin-bottom: 25px;
+
+            .hi-user {
+                color: blue;
+            }
+
+            .mobile {
+                display: none;
+            }
+
+            @media (max-width: 480px) {
+                .sidebar-container-content {
+                    display: block;
+                }
+            }
+
+            .menu-block {
+                cursor: pointer;
+                display: flex;
+                justify-content: space-between;
+
+                .menu-title {
+                    font-size: 20px;
+
+                }
+
+                .close {
+                    font-size: 20px;
+                }
+            }
+
+
+
+
+        }
+
+
+
+
+        .center-content {
+            ul {
+                span {
+                    &:hover {
+                        color: var(--main-color);
+                    }
+                }
+
+                cursor: pointer;
+                font-size: 18px;
+                font-weight: 500;
+                list-style-type: none;
+                padding: 0;
+                margin: 10px 0;
+                position: relative;
+
+                i {
+                    position: absolute;
+                    right: 0;
+                }
+
+                li {
+                    display: block;
+
+                    &:hover {
+                        color: var(--main-color);
+                    }
+
+                    margin: 8px 0 0 24px;
+                    font-size: 16px;
+                }
+            }
+
+        }
+
+        .bottom-content {
+            cursor: pointer;
+
+            ul {
+                cursor: pointer;
+
+                &:hover {
+                    color: var(--main-color);
+                }
+            }
+        }
+
+    }
+}
