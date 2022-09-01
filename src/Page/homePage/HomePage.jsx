@@ -5,13 +5,6 @@ import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import './HomePage.scss'
 export const HomePage = () => {
-    let navigate = useNavigate()
-    let isAdmin = useSelector((state) => state.auth.login.userInfor?.isAdmin)
-    useEffect(() => {
-        if (isAdmin) {
-            navigate('/system')
-        }
-    }, [])
 
     return (
         <div className="homePage-container">
