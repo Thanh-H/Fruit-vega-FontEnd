@@ -11,9 +11,9 @@ import { useDispatch, useSelector } from 'react-redux'
 export const NavSystem = () => {
     let dispatch = useDispatch()
     let navigate = useNavigate()
-    let id = useSelector((state) => state.auth.login.userInfor._id)
-    let accessToken = useSelector((state => state.auth.login.userInfor.accessToken))
-    let userName = useSelector((state => state.auth.login.userInfor.userName))
+    let id = useSelector((state) => state.auth.login.userInfor?._id)
+    let accessToken = useSelector((state => state.auth.login.userInfor?.accessToken))
+    let userName = useSelector((state => state.auth.login.userInfor?.userName))
 
     let handleLogOut = () => {
         logOutUser(id, accessToken, dispatch, navigate)

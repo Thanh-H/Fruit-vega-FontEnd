@@ -1,0 +1,114 @@
+.product-container {
+    width: 100%;
+
+    .product-title {
+
+        margin: 16px auto;
+        width: 88%;
+        font-size: 25px;
+        font-weight: 600;
+        cursor: pointer;
+
+        span {
+            &:hover {
+                color: var(--main-color);
+            }
+        }
+
+    }
+
+    .product-item-container {
+
+        width: 92%;
+        margin: 0 auto;
+
+
+
+
+        .product-item-content {
+            height: 325px;
+
+
+
+
+            .content-top {
+
+                background-image: url('../../../assets/balo.jpg');
+                background-repeat: no-repeat;
+                background-size: cover;
+                height: 245px;
+                width: 100%;
+                background-position: 50%;
+                cursor: pointer;
+            }
+
+            .content-center {
+                cursor: pointer;
+                text-align: center;
+                margin: 10px 0;
+                font-size: 16px;
+                font-family: 'Quicksand', sans-serif;
+
+                &:hover {
+                    color: var(--main-color);
+                }
+            }
+
+            .content-footer {
+                .box-price {
+                    font-size: 14px;
+                    font-family: 'Quicksand', sans-serif;
+                    font-weight: 600;
+                    text-align: center;
+                }
+
+                .box-price-sale {
+                    font-family: 'Quicksand', sans-serif;
+                    text-align: center;
+
+
+
+                    .curent-price {
+                        font-weight: 700;
+                        margin: 0 2px;
+                        color: red;
+                        font-size: 14px;
+                    }
+
+                    .old-price {
+                        margin: 0 8px;
+                        font-size: 13px;
+                    }
+                }
+
+
+
+            }
+
+        }
+    }
+
+
+
+
+}
+
+@media (max-width: 480px) {
+    .product-item-content {
+        height: 262px !important;
+
+        .content-top {
+            height: 180px !important;
+        }
+    }
+}
+
+@media (max-width: 768) {
+    .product-item-content {
+        height: 300px !important;
+
+        .content-top {
+            height: 235 !important;
+        }
+    }
+}

@@ -18,6 +18,7 @@ export const Header = () => {
     let [openMenuBar, setOpenMenuBar] = useState(false)
     let [openCart, setOpenCart] = useState(false)
     let [openUserPage, setOpenUserPage] = useState(false)
+    let [openSearch, setOpenSearch] = useState(false)
 
     let userName = useSelector((state => state.auth.login.userInfor?.userName))
     let isAdmin = useSelector((state) => state.auth.login.userInfor?.isAdmin)
@@ -25,14 +26,18 @@ export const Header = () => {
     let handleOpenMenu = (id) => {
         id === 'menu' && setOpenMenuBar(!openMenuBar)
         id === 'cart' && setOpenCart(!openCart)
-        id === 'user' && setOpenUserPage(!openUserPage)
+        id === 'search' && setOpenSearch(!openSearch)
         if (id === 'close') {
             setOpenMenuBar(false)
             setOpenCart(false)
-            setOpenUserPage(false)
+            setOpenSearch(false)
         }
         id === 'admin' && navigate('/system')
     }
+    let handleGoToLoginPage = () => {
+        navigate('/login')
+    }
+
 
     return (
         <div className='home-header-container'>
@@ -43,8 +48,7 @@ export const Header = () => {
                     </div>
                     <div className='center-content form-group'>
                         <input className='search-center' type="text" />
-                        <div className="icon-glass"
-                            onClick={() => handleOpenMenu('search')}>
+                        <div className="icon-glass">
                             <FontAwesomeIcon icon={faMagnifyingGlass}></FontAwesomeIcon>
                         </div>
                     </div>
@@ -57,10 +61,14 @@ export const Header = () => {
                         {userName ? <div className='user-logged-in'>hi {userName} ! </div>
                             :
                             <div className="user-login"
-                                onClick={() => handleOpenMenu('user')}>
+                                onClick={() => handleGoToLoginPage()}>
                                 <FontAwesomeIcon icon={faUser}></FontAwesomeIcon>
                             </div>}
 
+                        <div className="search"
+                            onClick={() => handleOpenMenu('search')}>
+                            <FontAwesomeIcon icon={faMagnifyingGlass}></FontAwesomeIcon>
+                        </div>
                         <div className="cart"
                             onClick={() => handleOpenMenu('cart')}>
                             <FontAwesomeIcon icon={faBagShopping}></FontAwesomeIcon>
@@ -75,9 +83,10 @@ export const Header = () => {
             </div>
             <SideBar
                 openCart={openCart}
-                openUserPage={openUserPage}
+                openSearch={openSearch}
                 openMenuBar={openMenuBar}
-                handleOpenMenu={handleOpenMenu} />
+                handleOpenMenu={handleOpenMenu}
+            />
         </div>
     )
 }

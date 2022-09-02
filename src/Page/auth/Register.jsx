@@ -38,13 +38,17 @@ export const Register = () => {
             handleRegister()
         }
     }
+
+    let handleGoToHomePage = () => {
+        navigate('/')
+    }
     return (
         <>
             <div className='login-container  '>
                 <div className="content-container row  container">
                     <div className="comtent-left col-6">
-                        <h1 className="store-title">Trái Cây Bốn mùa</h1>
-                        <p>Nơi cung cấp trái cây tươi ngon và an toàn cho mọi nhà</p>
+                        <h1 onClick={() => handleGoToHomePage()} className="store-title">ICING</h1>
+                        <p>Phụ Kiện thời trang</p>
                     </div>
                     <div className="content-right col-6 ">
                         <div className="form-container">

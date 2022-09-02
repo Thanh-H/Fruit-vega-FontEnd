@@ -19,21 +19,15 @@
         background-color: white;
         z-index: 102;
         overflow: hidden;
-        animation: identifier linear 0.4s;
+        transform: translateX(+100%);
+        transition: transform linear 0.4s;
     }
 
-
-    @keyframes identifier {
-        from {
-            transform: translateX(+100%);
-            opacity: 0;
-        }
-
-        to {
-            transform: translateX(0);
-            opacity: 1;
-        }
+    .sidebar-container-content-close {
+        transform: translateX(0%);
+        transition: transform linear 0.4s;
     }
+
 
     @keyframes fadeIn {
         from {
@@ -49,29 +43,41 @@
     @media (max-width: 480px) {
         .sidebar-container-content {
             width: 80%;
+
+            .menu-container {
+                width: 90%;
+            }
         }
     }
 
     .menu-container {
         margin: 0 auto;
-        width: 90%;
-        margin-top: 7vh;
+        width: 70%;
+        margin-top: 5vh;
         height: 90vh;
-        border: 1px solid red;
 
         .top-content {
             margin-bottom: 25px;
 
             .hi-user {
+                width: 100%;
                 color: blue;
+                text-align: center;
+                margin-bottom: 16px;
             }
 
             .mobile {
+                cursor: pointer;
                 display: none;
+                text-align: center;
+                width: 100%;
+                margin-bottom: 30px;
             }
 
             @media (max-width: 480px) {
-                .sidebar-container-content {
+
+
+                .mobile {
                     display: block;
                 }
             }
@@ -80,24 +86,27 @@
                 cursor: pointer;
                 display: flex;
                 justify-content: space-between;
+                margin-bottom: 30px;
 
                 .menu-title {
-                    font-size: 20px;
+                    font-size: 18px;
+
+                    &:hover {
+                        color: var(--main-color);
+                    }
 
                 }
 
                 .close {
                     font-size: 20px;
+
+                    &:hover {
+                        color: var(--main-color);
+                    }
                 }
             }
 
-
-
-
         }
-
-
-
 
         .center-content {
             ul {
@@ -112,7 +121,7 @@
                 font-weight: 500;
                 list-style-type: none;
                 padding: 0;
-                margin: 10px 0;
+                margin: 16px 0;
                 position: relative;
 
                 i {
@@ -129,6 +138,7 @@
 
                     margin: 8px 0 0 24px;
                     font-size: 16px;
+
                 }
             }
 
@@ -136,8 +146,9 @@
 
         .bottom-content {
             cursor: pointer;
+            margin-top: 30px;
 
-            ul {
+            div {
                 cursor: pointer;
 
                 &:hover {

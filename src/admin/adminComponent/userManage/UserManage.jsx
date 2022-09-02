@@ -15,14 +15,14 @@ export const UserManage = () => {
     let [isEdit, setIsEdit] = useState(false)
     let dispatch = useDispatch()
     let allUser = useSelector((state) => state.users.users?.allUsers)
-    let accessToken = useSelector((state => state.auth.login?.userInfor.accessToken))
+    let accessToken = useSelector((state => state.auth.login.userInfor?.accessToken))
     let [handle, setHandle] = useState('')
 
     useEffect(() => {
         getAllUser(dispatch)
 
     }, [handle])
-    console.log('--------------------', handle)
+
     let handleCreateUser = async () => {
         await CreateUser(userName, email, password, role)
         setEmail('')

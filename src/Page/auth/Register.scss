@@ -1,5 +1,5 @@
 .login-container {
-    background-color: #b4cebb;
+    background-color: #f1e7ee;
     height: 100vh;
     display: flex;
     align-items: center;
@@ -12,22 +12,23 @@
         overflow: hidden;
 
         .comtent-left {
-            width: fit-content;
+
             text-align: center;
             display: flex;
             flex-direction: column;
             justify-content: center;
 
             .store-title {
-                color: #c73030;
+                color: var(--main-color);
                 font-weight: 800;
                 font-size: 50px;
+                cursor: pointer;
             }
 
         }
 
         .content-right {
-            width: fit-content;
+
             align-items: center;
             display: flex;
             flex-direction: column;
@@ -53,9 +54,11 @@
                     }
 
                     i {
+                        cursor: pointer;
+                        padding: 8px;
                         position: absolute;
                         right: 15px;
-                        top: 8px;
+                        top: 0;
                     }
                 }
 
@@ -67,7 +70,7 @@
                 .btn-login {
                     margin: 0 auto;
                     width: 100%;
-                    background-color: #c73030;
+                    background-color: var(--main-color);
                     color: #fff;
                     font-size: 20px;
                     font-weight: 600;

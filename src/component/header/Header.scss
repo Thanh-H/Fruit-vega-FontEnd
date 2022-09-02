@@ -29,10 +29,9 @@
                 align-items: center;
 
                 .header-logo {
-                    transform: scale(0.5, 0.5);
-
+                    transform: scale(0.7, 0.4);
                     height: 100%;
-                    width: 100%;
+                    width: 60%;
                     cursor: pointer;
                 }
 
@@ -102,7 +101,9 @@
 
                 }
 
-                .cart {
+                .cart,
+                .search {
+                    display: flex;
                     font-size: 22px;
                     margin-right: 20px;
                     cursor: pointer;
@@ -110,6 +111,10 @@
                     &:hover {
                         color: #eb5b5c;
                     }
+                }
+
+                .search {
+                    display: none;
                 }
 
                 .menu {
@@ -138,8 +143,13 @@
                     // .user-login {
                     //     display: none;
                     // }
+                    .user-login,
                     .user-logged-in {
                         display: none;
+                    }
+
+                    .search {
+                        display: flex;
                     }
 
 

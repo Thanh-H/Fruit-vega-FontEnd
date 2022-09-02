@@ -24,7 +24,20 @@ const deleteUserService = (id, accessToken) => {
 const updateUserService = (data) => {
     return axios.put('/api/update-userByAdmin/', data)
 }
+
+const createANewProduct = (data) => {
+    return axios.post('/api/create-new-product', data)
+}
+
+const getAllProductService = () => {
+    return axios.get('/api/get-all-products')
+}
+
+const deleteProductService = (id) => {
+    return axios.delete('/api/delete-product/' + id)
+}
+
 export {
     handleLoginService, handleRegisterService, handleLogOutService, getAllUserService, deleteUserService,
-    updateUserService
+    updateUserService, createANewProduct, getAllProductService, deleteProductService
 }

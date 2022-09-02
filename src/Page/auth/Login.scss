@@ -1,5 +1,5 @@
 .login-container {
-    background-color: #b4cebb;
+    background-color: #aa247e;
     height: 100vh;
     display: flex;
     align-items: center;
@@ -12,7 +12,6 @@
         overflow: hidden;
 
         .comtent-left {
-            width: fit-content;
             text-align: center;
             display: flex;
             flex-direction: column;
@@ -27,7 +26,6 @@
         }
 
         .content-right {
-            width: fit-content;
             align-items: center;
             display: flex;
             flex-direction: column;
