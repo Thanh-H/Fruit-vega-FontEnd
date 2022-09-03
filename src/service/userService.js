@@ -26,6 +26,7 @@ const updateUserService = (data) => {
 }
 
 const createANewProduct = (data) => {
+    console.log(data)
     return axios.post('/api/create-new-product', data)
 }
 
@@ -37,7 +38,11 @@ const deleteProductService = (id) => {
     return axios.delete('/api/delete-product/' + id)
 }
 
+const updateProductByIdService = (data) => {
+    return axios.put('/api/update-product-by-id/', data)
+}
+
 export {
     handleLoginService, handleRegisterService, handleLogOutService, getAllUserService, deleteUserService,
-    updateUserService, createANewProduct, getAllProductService, deleteProductService
+    updateUserService, createANewProduct, getAllProductService, deleteProductService, updateProductByIdService
 }

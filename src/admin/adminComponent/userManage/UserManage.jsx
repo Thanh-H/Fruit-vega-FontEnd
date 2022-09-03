@@ -124,7 +124,7 @@ export const UserManage = () => {
                         <th scope="col">STT</th>
                         <th scope="col">Họ và tên</th>
                         <th scope="col">Email</th>
-                        <th scope="col">Xử lý</th>
+                        <th style={{ textAlign: 'center' }} scope="col">Xử lý</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -133,7 +133,7 @@ export const UserManage = () => {
                             <th scope="row">{index + 1}</th>
                             <td>{item.userName}</td>
                             <td> {item.email} </td>
-                            <td>
+                            <td style={{ textAlign: 'center' }}>
                                 <FontAwesomeIcon onClick={() => handleEditUser(item)} style={{ marginRight: '30px' }} className='btn  btn-warning' icon={faPenToSquare} ></FontAwesomeIcon>
                                 <FontAwesomeIcon onClick={() => handleDeleteUser(item._id)} style={{ marginLeft: '30px' }} className='btn btn-danger' icon={faTrash}  ></FontAwesomeIcon>
                             </td>

@@ -19,18 +19,19 @@ export const NavSystem = () => {
         logOutUser(id, accessToken, dispatch, navigate)
     }
     return (
-        <div class="topnav">
-
-            <div className='admin-title'>Admin</div>
-            <NavLink class="active" to={`/system/user-manage/${id}`}>Người dùng</NavLink>
-            <NavLink class="active" to={`/system/product-manage/${id}`}>Sản phẩm</NavLink>
-            <NavLink class="active" to={`/system/order-manage/${id}`}>Đơn hàng</NavLink>
-            <NavLink class="active" to={`/system/history/${id}`}>Lịch sử</NavLink>
-
-            <div className="user-name">hi {userName ? userName : ''}! </div>
-            <div onClick={() => handleLogOut()} className="log-out">
-                <FontAwesomeIcon icon={faRightFromBracket} ></FontAwesomeIcon>
+        <>
+            <div class="topnav">
+                <div className='admin-title'>Admin</div>
+                <NavLink class="active" to={`/system/user-manage/${id}`}>Người dùng</NavLink>
+                <NavLink class="active" to={`/system/product-manage/${id}`}>Sản phẩm</NavLink>
+                <NavLink class="active" to={`/system/order-manage/${id}`}>Đơn hàng</NavLink>
+                <NavLink class="active" to={`/system/history/${id}`}>Lịch sử</NavLink>
+                <div className="user-name">hi {userName ? userName : ''}! </div>
+                <div onClick={() => handleLogOut()} className="log-out">
+                    <FontAwesomeIcon icon={faRightFromBracket} ></FontAwesomeIcon>
+                </div>
             </div>
-        </div>
+            <div className="boottom-nav"></div>
+        </>
     )
 }
