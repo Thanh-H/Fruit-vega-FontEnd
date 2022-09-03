@@ -7,7 +7,7 @@ import { UserManage } from './adminComponent/userManage/UserManage';
 import { useSelector } from 'react-redux'
 
 export const System = () => {
-    let id = useSelector((state) => state.auth.login.userInfor._id)
+    let id = useSelector((state) => state.auth.login.userInfor?._id)
     return (
         <>
             <NavSystem />

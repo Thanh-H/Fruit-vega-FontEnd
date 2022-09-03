@@ -26,7 +26,6 @@ export const ProductManage = () => {
     let [count, setCount] = useState(1)
 
     function handleEditorChange({ html, text }) {
-        console.log('handleEditorChange', html, text);
         setContentMarkdown(text)
         setContentHTML(html)
     }
@@ -44,11 +43,10 @@ export const ProductManage = () => {
 
     }, [count])
 
-    console.log('ssss', allProducts)
     ////Create new product
     let handleCreateNewProduct = async () => {
         setCount(++count)
-        let newArrSize = arrSize.split("| |")
+        let newArrSize = arrSize.split(",")
         let newArrImage = arrImage.split("| |")
         let res = await createANewProduct(
             {
@@ -93,6 +91,57 @@ export const ProductManage = () => {
             toast.error(`${res.errMessage}`)
         }
     }
+
+    let [getQtyImg, SetGetQtyImg] = useState()
+    let [imgLength, setImgLength] = useState()
+    let handeleConverStringToNumber = () => {
+        let number = parseInt(getQtyImg)
+        if (number > 12) {
+            number = 12
+            setImgLength(number)
+        } if (number > 0) { setImgLength(number) }
+        else { setImgLength(0) }
+    }
+    let [arrImg, setArrImg] = useState([])
+    let [tileImg, setTitleImg] = useState({})
+    let handle = (id, value) => {
+
+
+
+
+        if (id == 0) { setArrImg([...arrImg, { img1: value },]) }
+        if (id == 1) { setArrImg([...arrImg, { img2: value },]) }
+        if (id == 2) { setArrImg([...arrImg, { img3: value },]) }
+        if (id == 3) { setArrImg([...arrImg, { img4: value },]) }
+        if (id == 4) { setArrImg([...arrImg, { img5: value },]) }
+        if (id == 5) { setArrImg([...arrImg, { img6: value },]) }
+        if (id == 6) { setArrImg([...arrImg, { img7: value },]) }
+        if (id == 7) { setArrImg([...arrImg, { img8: value },]) }
+        if (id == 8) { setArrImg([...arrImg, { img9: value },]) }
+        if (id == 9) { setArrImg([...arrImg, { img10: value },]) }
+        if (id == 10) { setArrImg([...arrImg, { img11: value },]) }
+        if (id == 11) { setArrImg([...arrImg, { img12: value },]) }
+        if (id == 12) { setArrImg([...arrImg, { img13: value },]) }
+
+
+        if (id == '0a') { setTitleImg({ ...tileImg, titleImg1: value, }) }
+        if (id == '1a') { setTitleImg({ ...tileImg, titleImg2: value, }) }
+        if (id == '2a') { setTitleImg({ ...tileImg, titleImg3: value, }) }
+        if (id == '3a') { setTitleImg({ ...tileImg, titleImg4: value, }) }
+        if (id == '4a') { setTitleImg({ ...tileImg, titleImg5: value, }) }
+        if (id == '5a') { setTitleImg({ ...tileImg, titleImg6: value, }) }
+        if (id == '6a') { setTitleImg({ ...tileImg, titleImg7: value, }) }
+        if (id == '7a') { setTitleImg({ ...tileImg, titleImg8: value, }) }
+        if (id == '8a') { setTitleImg({ ...tileImg, titleImg9: value, }) }
+        if (id == '9a') { setTitleImg({ ...tileImg, titleImg10: value, }) }
+        if (id == '10a') { setTitleImg({ ...tileImg, titleImg11: value, }) }
+        if (id == '11a') { setTitleImg({ ...tileImg, titleImg12: value, }) }
+        if (id == '12a') { setTitleImg({ ...tileImg, titleImg13: value, }) }
+
+    }
+    console.log(arrImg)
+    console.log(tileImg)
+
     return (
         <div className="user-manage-container">
             <form >
@@ -144,25 +193,32 @@ export const ProductManage = () => {
 
                 </div>
 
-
                 <div className="form-group col-12 ">
                     <label>Nhập 1 Mảng Size</label>
-                    <textarea style={{ height: '100px' }}
+                    <textarea style={{ height: '50px' }}
+                        placeholder="Ví dụ: S,M,L,XL,XXL,XXL "
                         onChange={(e) => setArrSize(e.target.value)}
-                        type="text" className="form-control"
-                    />
+                        type="text" className="form-control" />
                 </div>
-                <div className="form-group col-12 ">
-                    <label>Nhập 1 mảng link hình ảnh</label>
-                    <textarea
-                        onChange={(e) => setArrImage(e.target.value)}
-                        style={{ height: '200px' }}
-                        type="text" className="form-control"
-                    />
+                <div className="form-group col-12 mt-3 ">
+                    <label>Nhập số ảnh: </label> &nbsp;
+                    <input style={{ height: '36px' }}
+                        onChange={(e) => SetGetQtyImg(e.target.value)}
+                        type="number" className=""
+                    />  &nbsp; <div onClick={() => handeleConverStringToNumber()} className='btn btn-primary'>ok</div>
+
+                    <div className='arr-img-container'>{Array.from(Array(imgLength), (e, i) => {
+                        return <div className='content-container' key={i}> <div>Ảnh {i + 1}</div>
+                            <div className='content'>
+                                <input placeholder='tiêu đề ảnh' type="text" onChange={(e) => handle(i, e.target.value)} />
+                                <input placeholder='đường link ảnh' type="text" onChange={(e) => handle(i + 'a', e.target.value)} />
+                            </div>
+                        </div>
+                    })}</div>
                 </div>
 
 
-            </form>
+            </form >
             <div className='manage-product-editor'>
                 <label>Mô tả sản phẩm</label>
                 <MdEditor style={{ height: '500px' }}
@@ -208,6 +264,6 @@ export const ProductManage = () => {
                 </tbody>
             </table>
 
-        </div>
+        </div >
     )
 }

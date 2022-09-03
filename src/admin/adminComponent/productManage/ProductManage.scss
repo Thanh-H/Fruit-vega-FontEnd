@@ -3,4 +3,36 @@
         margin: 6px 0;
     }
 
+    .arr-img-container {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 8px 0;
+
+        .content-container {
+            margin: 0 8px;
+            width: 15%;
+
+            .content {
+
+                display: flex;
+                flex-direction: column;
+
+                input {
+                    border-radius: 3px;
+                    margin: 8px 0;
+                    padding: 0.375rem 0.75rem;
+                    font-size: 1rem;
+                    font-weight: 400;
+                    line-height: 1.5;
+                    color: #212529;
+                    background-color: #fff;
+                    background-clip: padding-box;
+                    border: 1px solid #ced4da;
+                    appearance: none;
+                    border-radius: 0.375rem;
+                }
+            }
+        }
+    }
+
 }
