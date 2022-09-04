@@ -54,7 +54,7 @@ export const ProductManage = () => {
             let res = await getAllProductService()
 
             if (res && res.errCode === 0) {
-                setAllProducts(res.data)
+                setAllProducts(res.data.reverse())
             }
         }
         getAllProduct()

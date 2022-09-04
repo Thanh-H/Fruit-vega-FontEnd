@@ -4,17 +4,27 @@ import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import './HomePage.scss'
 import { Banner } from '../../component/banner/Banner'
-import { KeyChain } from './products/keyChain/KeyChain'
+import { Products } from './products/Products'
 import { Footer } from '../../component/footer/Footer'
-import { Watch } from './products/backpack/Wathch'
+// import { Watch } from './products/watch/Watch'
 export const HomePage = () => {
 
     return (
         <div className="homePage-container">
             <Header />
             <Banner />
-            <Watch />
-            <KeyChain />
+            {/* Đồng hồ */}
+            <Products
+                limitItem={20}
+                productType={'watch'}
+                nameProduct={'Đồng Hồ'}
+            />
+            {/* Móc khóa */}
+            <Products
+                limitItem={20}
+                productType={'keyChain'}
+                nameProduct={'Móc khóa'}
+            />
             <Footer />
         </div>
 

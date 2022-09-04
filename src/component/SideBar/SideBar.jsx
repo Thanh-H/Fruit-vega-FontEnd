@@ -24,8 +24,6 @@ export const SideBar = (props) => {
 
     let { openMenuBar, handleOpenMenu,
         openCart, openSearch } = props
-    console.log(openMenuBar,
-        openCart, openSearch)
     let userName = useSelector((state => state.auth.login.userInfor?.userName))
     let [showSubKeyChain, setShowSubKeyChain] = useState(false)
     let [showSubBalo, setShowSubBalo] = useState(false)

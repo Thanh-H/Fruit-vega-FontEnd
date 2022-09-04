@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import NotFound from "./component/notFound/NotFound";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { DetailProduct } from "./Page/homePage/products/detailProduct/DetailProduct";
 function App() {
   let isAdmin = useSelector((state) => state.auth.login.userInfor?.isAdmin)
   return (
@@ -30,7 +31,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="*" element={<NotFound />} />
-
+        <Route path="/Detail-product/:id/:type" element={<DetailProduct />} />
       </Routes>
     </BrowserRouter>
 

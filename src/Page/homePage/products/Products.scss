@@ -3,7 +3,7 @@
 
     .product-title {
 
-        margin: 16px auto;
+        margin: 24px auto 0;
         width: 88%;
         font-size: 25px;
         font-weight: 600;
@@ -22,16 +22,19 @@
         width: 92%;
         margin: 0 auto;
 
-
-
-
         .product-item-content {
-            height: 325px;
-            margin-top: 16px;
+            border: 1px solid #ddd;
+            height: 350px;
+            margin-top: 30px;
 
+            &:hover {
+                box-shadow: 0 1px 2px 0 rgb(60 64 67 / 10%), 0 2px 6px 2px rgb(60 64 67 / 15%);
+
+            }
 
 
             .content-top {
+                margin-top: 5%;
                 position: relative;
                 background-repeat: no-repeat;
                 background-size: cover;
@@ -40,9 +43,15 @@
                 background-position: 50%;
                 cursor: pointer;
 
+                &:hover {
+                    transform: translateY(-5%);
+                    transition: transform linear 0.4s;
+
+                }
+
                 .sale {
-                    top: 8px;
-                    left: 8px;
+                    top: 1%;
+                    left: 1%;
                     position: absolute;
                     background-image: url('https://theme.hstatic.net/1000096703/1000836887/14/bg-saleoff.png?v=70');
                     background-position: 50%;
@@ -96,6 +105,18 @@
                     }
                 }
 
+                .add-to-cart {
+                    text-align: center;
+                    background-color: var(--main-color);
+                    color: white;
+                    cursor: pointer;
+                    height: 36px;
+                    font-size: 16px;
+                    line-height: 36px;
+                    width: 80%;
+                    margin: 0 auto;
+
+                }
 
 
             }

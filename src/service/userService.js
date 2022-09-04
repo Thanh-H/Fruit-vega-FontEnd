@@ -42,7 +42,12 @@ const updateProductByIdService = (data) => {
     return axios.put('/api/update-product-by-id/', data)
 }
 
+const getProductByIdService = (id) => {
+    return axios.get(`/api/get-product-by-id/${id}`)
+}
+
 export {
     handleLoginService, handleRegisterService, handleLogOutService, getAllUserService, deleteUserService,
-    updateUserService, createANewProduct, getAllProductService, deleteProductService, updateProductByIdService
+    updateUserService, createANewProduct, getAllProductService, deleteProductService, updateProductByIdService,
+    getProductByIdService
 }

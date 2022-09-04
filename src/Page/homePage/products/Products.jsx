@@ -1,42 +1,51 @@
 import React from 'react'
-import '../Product.scss'
-import { getAllProductService } from '../../../../service/userService'
+import './Products.scss'
+import { getAllProductService } from '../../../service/userService'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import NumberFormat from 'react-number-format';
+import { useNavigate } from 'react-router-dom'
 
-export const KeyChain = () => {
-    let [allKeyChains, setAllKeyChains] = useState()
+
+export const Products = (props) => {
+    let limitItem = props.limitItem
+    let productType = props.productType
+    let nameProduct = props.nameProduct
+    let [AllProducts, setAllProducts] = useState()
     useEffect(() => {
         let getAllProduct = async () => {
             let res = await getAllProductService()
             if (res && res.errCode === 0) {
                 let allProducts = res.data
-                let keyChains = allProducts.filter((item, index) => {
-                    if (item.productType === 'keyChain') return item
+                let productS = allProducts.filter((item, index) => {
+                    if (item.productType === productType) return item
                 })
-                setAllKeyChains(keyChains)
+                setAllProducts(productS.reverse())
             }
 
-            console.log('chectttttttttt', res.data)
+
         }
         getAllProduct()
     }, [])
 
-    console.log('checkxx', allKeyChains)
+    let navigate = useNavigate()
+    let HandleRedirec = (item) => {
+        navigate(`/Detail-product/${item._id}/${item.productType}`)
+    }
     return (
         <div className="product-container ">
             <h1 className="product-title">
-                <span>Móc khóa</span>
+                <span>{nameProduct}</span>
             </h1>
             <div className="product-item-container row">
-                {allKeyChains && allKeyChains.length > 0 && allKeyChains.map((item, index) => {
+                {AllProducts && AllProducts.length > 0 && AllProducts.slice(0, limitItem).map((item, index) => {
                     return (<div key={index} className="product-item-content col-6 col-xl-3 col-md-4">
-                        <div style={{ backgroundImage: `url(${item.arrImage[0]?.image})` }} className="content-top">
-                            {item.oldPrice && <div className='sale'>   {Math.floor(((item.currentPrice) / (item.oldPrice)) * 100)}%</div>}
+                        <div onClick={() => HandleRedirec(item)}
+                            style={{ backgroundImage: `url(${item.arrImage[0]?.image})` }} className="content-top">
+                            {item.oldPrice && <div className='sale'>   {Math.floor(100 - ((item.currentPrice) / (item.oldPrice)) * 100)}%</div>}
                         </div>
-                        <div className="content-center">
-
+                        <div onClick={() => HandleRedirec(item)}
+                            className="content-center">
                             {item.productTitle}
                         </div>
                         <div className="content-footer">
@@ -64,6 +73,7 @@ export const KeyChain = () => {
                                             suffix={'đ'} />
                                     </del>
                                 </div>}
+                            {/* <div className="add-to-cart">Thêm vào giỏ </div> */}
                         </div>
                     </div>
                     )
