@@ -8,7 +8,7 @@ import { createANewProduct, getAllProductService, deleteProductService, updatePr
 import { toast } from 'react-toastify';
 import { useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFloppyDisk, faPenToSquare } from '@fortawesome/free-regular-svg-icons';
+import { faPenToSquare } from '@fortawesome/free-regular-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const mdParser = new MarkdownIt(/* Markdown-it options */);
@@ -25,6 +25,7 @@ export const ProductManage = () => {
     let [contentHTML, setContentHTML] = useState('')
     let [count, setCount] = useState(1)
     let [isUpdate, setIsUpdate] = useState(false)
+    let [isChangeText, setIsChangeText] = useState(true)
 
     let hanldeClearState = () => {
         setId('')
@@ -37,8 +38,8 @@ export const ProductManage = () => {
         setArrSize('')
         setContentMarkdown('')
         setContentHTML('')
+        setImgLength(0)
         setIsUpdate(false)
-        setArrImage([])
     }
 
     function handleEditorChange({ html, text }) {
@@ -57,57 +58,68 @@ export const ProductManage = () => {
         getAllProduct()
     }, [count])
 
-    /// Build data ArrImage
-    ////
-    let [arrImage, setArrImage] = useState([])
-
-    let [titleImg, setTilteImg] = useState('')
-    let [image, setImage] = useState('')
-
-    let [titleImgEdit, setTilteImgEdit] = useState('')
-    let [imageEdit, setImageEdit] = useState('')
-
-    let [idImgCoppy, setIdImgCoppy] = useState(false)
-
-    ////
-    let handleAddImg = () => {
-        if (image) {
-            setArrImage([
-                ...arrImage,
-                {
-                    id: Math.floor(Math.random() * 1000),
-                    title: titleImg,
-                    image: image
-                }
-            ])
+    ///  Begin build data image
+    let [getQtyImg, SetGetQtyImg] = useState() // set variable to get quantity
+    let [imgLength, setImgLength] = useState() // set variable to set length array Image and title image
+    let handeleConverStringToNumber = () => {
+        let number = parseInt(getQtyImg)
+        if (number > 12) {
+            number = 12
+            setImgLength(number)
+        } if (number > 0) { setImgLength(number) }
+        else { setImgLength(0) }
+    }
+    let whenKeyEnterDown = (e) => {
+        if (e.key === 'Enter' || e.keycode === 13) {
+            handeleConverStringToNumber()
         }
-
     }
-
-    let handleEditImage = (image) => {
-        setIdImgCoppy(image.id)
-        setImageEdit(image.image)
-        setTilteImgEdit(image.title)
-
-    }
-
-    let handleSaveImage = (image) => {
-        setIdImgCoppy(null)
-        if (imageEdit) {
-            let arrImageCoppy = [...arrImage];
-            let objIndex = arrImageCoppy.findIndex((item => item.id === image.id));
-            arrImageCoppy[objIndex].image = imageEdit
-            if (titleImgEdit) { arrImageCoppy[objIndex].title = titleImgEdit }
-            setArrImage([...arrImageCoppy])
-            toast.success('Edit image succeed!')
+    let [arrImg, setArrImg] = useState({})  // set variable to build object image
+    let [tileImg, setTitleImg] = useState({}) //set variable to build object title image
+    let handleBeginBuilDataImg = (id, value) => {
+        if (value) {
+            setIsChangeText(false)
         }
+        if (id === 0) { setArrImg({ ...arrImg, img1: value }) }
+        if (id === 1) { setArrImg({ ...arrImg, img2: value }) }
+        if (id === 2) { setArrImg({ ...arrImg, img3: value }) }
+        if (id === 3) { setArrImg({ ...arrImg, img4: value }) }
+        if (id === 4) { setArrImg({ ...arrImg, img5: value }) }
+        if (id === 5) { setArrImg({ ...arrImg, img6: value }) }
+        if (id === 6) { setArrImg({ ...arrImg, img7: value }) }
+        if (id === 7) { setArrImg({ ...arrImg, img8: value }) }
+        if (id === 8) { setArrImg({ ...arrImg, img9: value }) }
+        if (id === 9) { setArrImg({ ...arrImg, img10: value }) }
+        if (id === 10) { setArrImg({ ...arrImg, img11: value }) }
+        if (id === 11) { setArrImg({ ...arrImg, img12: value }) }
+        if (id === 12) { setArrImg({ ...arrImg, img13: value }) }
+        //////////////////////
+        if (id === '0a') { setTitleImg({ ...tileImg, titleImg1: value, }) }
+        if (id === '1a') { setTitleImg({ ...tileImg, titleImg2: value, }) }
+        if (id === '2a') { setTitleImg({ ...tileImg, titleImg3: value, }) }
+        if (id === '3a') { setTitleImg({ ...tileImg, titleImg4: value, }) }
+        if (id === '4a') { setTitleImg({ ...tileImg, titleImg5: value, }) }
+        if (id === '5a') { setTitleImg({ ...tileImg, titleImg6: value, }) }
+        if (id === '6a') { setTitleImg({ ...tileImg, titleImg7: value, }) }
+        if (id === '7a') { setTitleImg({ ...tileImg, titleImg8: value, }) }
+        if (id === '8a') { setTitleImg({ ...tileImg, titleImg9: value, }) }
+        if (id === '9a') { setTitleImg({ ...tileImg, titleImg10: value, }) }
+        if (id === '10a') { setTitleImg({ ...tileImg, titleImg11: value, }) }
+        if (id === '11a') { setTitleImg({ ...tileImg, titleImg12: value, }) }
+        if (id === '12a') { setTitleImg({ ...tileImg, titleImg13: value, }) }
 
 
     }
-    let handleDeleteImage = (image) => {
-        let deleteImage = arrImage.filter((item) => image.id !== item.id)
-        setArrImage([...deleteImage])
+
+    let [arrImage, setArrImage] = useState(['1'])
+    let [arrTitleImage, setArrTitleImage] = useState(['1'])
+    let endBuidDataImage = () => {
+        let BuildArrImage = Object.entries(arrImg).map(([k, v]) => [v].toString()); // convert object to array
+        let BuildArrTitleImage = Object.entries(tileImg).map(([k, v]) => [v].toString()); // convert object to array
+        setArrImage(BuildArrImage)
+        setArrTitleImage(BuildArrTitleImage)
     }
+    //// END build data image
 
     ////Create new product
     let handleCreateNewProduct = async () => {
@@ -122,6 +134,7 @@ export const ProductManage = () => {
                 inStock,
                 arrSize,
                 arrImage,
+                arrTitleImage,
                 contentMarkdown,
                 contentHTML,
             }
@@ -151,8 +164,9 @@ export const ProductManage = () => {
         setInStock(item.inStock)
         setArrSize(item.arrSize.toString())
         setContentMarkdown(item.contentMarkdown)
+        setImgLength(item.arrImage.length)
         setArrImage(item.arrImage)
-
+        setArrTitleImage(item.arrTitleImage)
 
     }
 
@@ -168,6 +182,7 @@ export const ProductManage = () => {
             inStock,
             arrSize,
             arrImage,
+            arrTitleImage,
             contentMarkdown,
             contentHTML,
         })
@@ -197,7 +212,7 @@ export const ProductManage = () => {
     let handleCancel = () => {
         hanldeClearState()
     }
-    console.log(idImgCoppy)
+
     return (
         <div className="user-manage-container">
             <form >
@@ -258,36 +273,25 @@ export const ProductManage = () => {
                         type="text" className="form-control" />
                 </div>
                 <div className="form-group col-12 mt-3 ">
-                    <div className="add-img-container">
-                        <div className='content-container' >
-                            <div>Thêm hình ảnh:</div>
-                            <div className='content'>
-                                <input value={titleImg} placeholder='tiêu đề ảnh' type="text" onChange={(e) => setTilteImg(e.target.value)} />
-                                <input value={image} placeholder='đường link ảnh' type="url" onChange={(e) => setImage(e.target.value)} />
-                                <div className="add-content ">
-                                    <div onClick={() => handleAddImg()} className='btn btn-primary'>Thêm ảnh</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className='content-image' style={{ backgroundImage: `url(${image})` }}> </div>
-                    </div>
+                    <label>Nhập số lượng ảnh: </label> &nbsp;
+                    <input style={{ width: '100px', height: '36px', textAlign: 'center' }}
+                        onChange={(e) => SetGetQtyImg(e.target.value)}
+                        onKeyDown={(e) => whenKeyEnterDown(e)}
+                        type="number" className=""
+                    />  &nbsp; <div onClick={() => handeleConverStringToNumber()} className='btn btn-primary'>ok</div>
 
-                    <div className='arr-img-container'>{arrImage.map((item, index) => {
-                        return <div className='content-container' key={index}> <div>Ảnh {index + 1} :</div>
+                    <div className='arr-img-container'>{Array.from(Array(imgLength), (e, i) => {
+                        return <div className='content-container' key={i}> <div>Ảnh {i + 1}</div>
                             <div className='content'>
-                                <div className="btn-container">
-                                    {idImgCoppy !== item.id ?
-                                        <FontAwesomeIcon onClick={() => handleEditImage(item)} style={{ marginRight: '30px' }} className='btn  btn-warning' icon={faPenToSquare} />
-                                        : <FontAwesomeIcon onClick={() => handleSaveImage(item)} style={{ marginRight: '30px' }} className='btn  btn-primary' icon={faFloppyDisk} />}
-                                    <FontAwesomeIcon onClick={() => handleDeleteImage(item)} style={{ marginLeft: '50px' }} className='btn btn-danger' icon={faTrash} />
-                                </div>
-                                {idImgCoppy !== item.id ?
-                                    <> <input disabled value={item.title} type="text" />
-                                        <input disabled value={item.image} type="text" /> </>
-                                    :
-                                    <>    <input type="text" value={titleImgEdit} onChange={e => setTilteImgEdit(e.target.value)} />
-                                        <input value={imageEdit} type="text" onChange={e => setImageEdit(e.target.value)} />  </>}
-                                <div className='content-image' style={{ backgroundImage: `url(${item.image})` }}> </div>
+                                <input value={isChangeText === true && isUpdate === true && arrTitleImage && arrTitleImage.length > 0 ? arrTitleImage.filter((item, index) => { if (index === i) return item }) : undefined} placeholder='tiêu đề ảnh' type="text" onChange={(e) => {
+                                    handleBeginBuilDataImg(i + 'a', e.target.value)
+                                    endBuidDataImage()
+                                }} />
+                                <input value={isChangeText === true && isUpdate === true && arrImage && arrImage.length > 0 ? arrImage.filter((item, index) => { if (index === i) return item.toString() }) : undefined} placeholder='đường link ảnh' type="text" onChange={(e) => {
+                                    handleBeginBuilDataImg(i, e.target.value)
+                                    endBuidDataImage()
+                                }} />
+                                {arrImage && arrImage.length > 0 && arrImage.map((item, index) => { if (index === i) return <div key={index} className='content-image' style={{ backgroundImage: `url(${index === i ? item : null})` }}> </div> })}
                             </div>
                         </div>
                     })}</div>

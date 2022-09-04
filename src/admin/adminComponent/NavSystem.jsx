@@ -20,12 +20,12 @@ export const NavSystem = () => {
     }
     return (
         <>
-            <div class="topnav">
+            <div className="topnav">
                 <div className='admin-title'>Admin</div>
-                <NavLink class="active" to={`/system/user-manage/${id}`}>Người dùng</NavLink>
-                <NavLink class="active" to={`/system/product-manage/${id}`}>Sản phẩm</NavLink>
-                <NavLink class="active" to={`/system/order-manage/${id}`}>Đơn hàng</NavLink>
-                <NavLink class="active" to={`/system/history/${id}`}>Lịch sử</NavLink>
+                <NavLink className="" to={`/system/user-manage/${id}`}>Người dùng</NavLink>
+                <NavLink className="" to={`/system/product-manage/${id}`}>Sản phẩm</NavLink>
+                <NavLink className="" to={`/system/order-manage/${id}`}>Đơn hàng</NavLink>
+                <NavLink className="" to={`/system/history/${id}`}>Lịch sử</NavLink>
                 <div className="user-name">hi {userName ? userName : ''}! </div>
                 <div onClick={() => handleLogOut()} className="log-out">
                     <FontAwesomeIcon icon={faRightFromBracket} ></FontAwesomeIcon>
