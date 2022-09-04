@@ -6,14 +6,14 @@ import './HomePage.scss'
 import { Banner } from '../../component/banner/Banner'
 import { KeyChain } from './products/keyChain/KeyChain'
 import { Footer } from '../../component/footer/Footer'
-import { BackPack } from './products/backpack/BackPack'
+import { Watch } from './products/backpack/Wathch'
 export const HomePage = () => {
 
     return (
         <div className="homePage-container">
             <Header />
             <Banner />
-            <BackPack />
+            <Watch />
             <KeyChain />
             <Footer />
         </div>

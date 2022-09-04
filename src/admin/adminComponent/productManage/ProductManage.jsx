@@ -27,18 +27,21 @@ export const ProductManage = () => {
     let [isUpdate, setIsUpdate] = useState(false)
 
     let hanldeClearState = () => {
-        setId('')
-        setProductType("keyChain")
-        setProductTitle('')
-        setProductCode('')
-        setCurrentPrice('')
-        setOldPrice('')
-        setInStock(true)
-        setArrSize('')
-        setContentMarkdown('')
-        setContentHTML('')
-        setIsUpdate(false)
-        setArrImage([])
+        // setId('')
+        // setProductType("keyChain")
+        // setProductTitle('')
+        // setProductCode('')
+        // setCurrentPrice('')
+        // setOldPrice('')
+        // setInStock(true)
+        // setArrSize('')
+        // setContentMarkdown('')
+        // setContentHTML('')
+        // setIsUpdate(false)
+        // setArrImage([])
+
+        // setTilteImg('')
+        // setImage('')
     }
 
     function handleEditorChange({ html, text }) {
@@ -111,7 +114,6 @@ export const ProductManage = () => {
 
     ////Create new product
     let handleCreateNewProduct = async () => {
-
         let res = await createANewProduct(
             {
                 productType,
@@ -311,7 +313,6 @@ export const ProductManage = () => {
                     <button onClick={() => handleUpdateProduct()} className=' btn-add btn btn-warning'>Lưu thay đổi</button>}
 
                 <button onClick={() => handleCancel()} className=' btn-cancle btn btn-secondary'>Hủy</button>
-                <button className=' btn-cancle btn btn-secondary'>build</button>
             </div>
 
 

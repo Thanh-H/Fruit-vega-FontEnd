@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import { faUser } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBagShopping, faBars, faCartShopping, faMagnifyingGlass, faPager } from '@fortawesome/free-solid-svg-icons'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { SideBar } from '../SideBar/SideBar'
 import { useDispatch, useSelector } from 'react-redux'
 import logo from './logo.svg'
@@ -36,6 +36,7 @@ export const Header = () => {
     }
     let handleGoToLoginPage = () => {
         navigate('/login')
+
     }
 
 
@@ -44,7 +45,8 @@ export const Header = () => {
             <div className='home-header-content-container'>
                 <div className="home-header-content">
                     <div className='left-content'>
-                        <img onClick={() => goToHomePage()} className='header-logo' src={logo} />
+                        <a onClick={() => goToHomePage()} href="/#"></a>
+                        <img className='header-logo' src={logo} />
                     </div>
                     <div className='center-content form-group'>
                         <input className='search-center' type="text" />
@@ -81,6 +83,7 @@ export const Header = () => {
                     </div>
                 </div>
             </div>
+            <div className='clear-space'></div>
             <SideBar
                 openCart={openCart}
                 openSearch={openSearch}

@@ -4,33 +4,32 @@ import { getAllProductService } from '../../../../service/userService'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import NumberFormat from 'react-number-format';
-
-export const KeyChain = () => {
-    let [allKeyChains, setAllKeyChains] = useState()
+export const Watch = () => {
+    let [allWatch, setAllWatch] = useState()
     useEffect(() => {
         let getAllProduct = async () => {
             let res = await getAllProductService()
+
             if (res && res.errCode === 0) {
                 let allProducts = res.data
-                let keyChains = allProducts.filter((item, index) => {
-                    if (item.productType === 'keyChain') return item
+                let waths = allProducts.filter((item, index) => {
+                    if (item.productType === 'watch') return item
                 })
-                setAllKeyChains(keyChains)
+                setAllWatch(waths)
             }
 
-            console.log('chectttttttttt', res.data)
+
         }
         getAllProduct()
     }, [])
 
-    console.log('checkxx', allKeyChains)
     return (
         <div className="product-container ">
             <h1 className="product-title">
-                <span>Móc khóa</span>
+                <span>Đồng Hồ</span>
             </h1>
             <div className="product-item-container row">
-                {allKeyChains && allKeyChains.length > 0 && allKeyChains.map((item, index) => {
+                {allWatch && allWatch.length > 0 && allWatch.map((item, index) => {
                     return (<div key={index} className="product-item-content col-6 col-xl-3 col-md-4">
                         <div style={{ backgroundImage: `url(${item.arrImage[0]?.image})` }} className="content-top">
                             {item.oldPrice && <div className='sale'>   {Math.floor(((item.currentPrice) / (item.oldPrice)) * 100)}%</div>}
