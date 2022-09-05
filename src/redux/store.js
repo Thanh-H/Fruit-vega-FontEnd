@@ -1,6 +1,7 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import authReducer from "./authSlice";
 import userReducer from "./userSlice";
+import productReducer from "./productSlice";
 import {
   persistStore,
   persistReducer,
@@ -20,7 +21,7 @@ const persistConfig = {
 
 };
 
-const rootReducer = combineReducers({ auth: authReducer, users: userReducer }); // sửa chỗ này
+const rootReducer = combineReducers({ auth: authReducer, users: userReducer, product: productReducer }); // sửa chỗ này
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 

@@ -12,6 +12,7 @@ import {
   getAllUsersSuccess, getAllUsersFailed,
   deleteUsersSuccess, deleteUserFailed
 } from "./userSlice";
+import { createCartSuccess, createCartFailed } from './productSlice'
 import { toast } from 'react-toastify';
 import { useSelector } from 'react-redux'
 
@@ -96,3 +97,13 @@ export const CreateUser = async (userName, email, password, role) => {
   }
 }
 
+export const createProductInCart = (product, dispatch) => {
+  try {
+    if (product) { dispatch(createCartSuccess(product)) }
+    else {
+      dispatch(createCartFailed())
+    }
+  } catch (error) {
+    dispatch(createCartFailed())
+  }
+}

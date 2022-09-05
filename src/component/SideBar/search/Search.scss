@@ -25,7 +25,11 @@
             }
 
             .close {
+                position: absolute;
+                top: 3vh;
+                right: 6vh;
                 font-size: 20px;
+
 
                 &:hover {
                     color: var(--main-color);
@@ -63,5 +67,10 @@
 @media (max-width: 480px) {
     .search-container {
         width: 90%;
+
+        .close {
+            top: 2vh !important;
+            right: 2vh !important;
+        }
     }
 }

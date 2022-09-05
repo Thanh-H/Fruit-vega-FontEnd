@@ -76,6 +76,11 @@
 
             @media (max-width: 480px) {
 
+                .close {
+                    position: absolute;
+                    top: 2vh !important;
+                    right: 2vh !important;
+                }
 
                 .mobile {
                     display: block;
@@ -87,6 +92,7 @@
                 display: flex;
                 justify-content: space-between;
                 margin-bottom: 30px;
+                width: 100%;
 
                 .menu-title {
                     font-size: 18px;
@@ -98,6 +104,9 @@
                 }
 
                 .close {
+                    position: absolute;
+                    top: 3vh;
+                    right: 6vh;
                     font-size: 20px;
 
                     &:hover {

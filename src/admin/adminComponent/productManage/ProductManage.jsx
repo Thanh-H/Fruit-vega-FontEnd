@@ -21,6 +21,7 @@ export const ProductManage = () => {
     let [oldPrice, setOldPrice] = useState('')
     let [inStock, setInStock] = useState(true)
     let [arrSize, setArrSize] = useState('')
+    let [arrColor, setArrColor] = useState('')
     let [contentMarkdown, setContentMarkdown] = useState('')
     let [contentHTML, setContentHTML] = useState('')
     let [count, setCount] = useState(1)
@@ -35,6 +36,7 @@ export const ProductManage = () => {
         // setOldPrice('')
         // setInStock(true)
         // setArrSize('')
+        // setArrColor('')
         // setContentMarkdown('')
         // setContentHTML('')
         // setIsUpdate(false)
@@ -123,6 +125,7 @@ export const ProductManage = () => {
                 oldPrice,
                 inStock,
                 arrSize,
+                arrColor,
                 arrImage,
                 contentMarkdown,
                 contentHTML,
@@ -152,6 +155,7 @@ export const ProductManage = () => {
         setOldPrice(item.oldPrice)
         setInStock(item.inStock)
         setArrSize(item.arrSize.toString())
+        setArrColor(item.arrColor.toString())
         setContentMarkdown(item.contentMarkdown)
         setArrImage(item.arrImage)
 
@@ -169,6 +173,7 @@ export const ProductManage = () => {
             oldPrice,
             inStock,
             arrSize,
+            arrColor,
             arrImage,
             contentMarkdown,
             contentHTML,
@@ -250,14 +255,23 @@ export const ProductManage = () => {
                     </div>
 
                 </div>
-
-                <div className="form-group col-12 ">
-                    <label>Nhập 1 Mảng Size</label>
-                    <input
-                        value={arrSize}
-                        placeholder="Ví dụ:   S,M,L,XL,XXL,XXL "
-                        onChange={(e) => setArrSize(e.target.value)}
-                        type="text" className="form-control" />
+                <div className="row">
+                    <div className="form-group col-6 ">
+                        <label>Nhập 1 Mảng Size</label>
+                        <input
+                            value={arrSize}
+                            placeholder="Ví dụ:   S,M,L,XL,XXL,XXL "
+                            onChange={(e) => setArrSize(e.target.value)}
+                            type="text" className="form-control" />
+                    </div>
+                    <div className="form-group col-6 ">
+                        <label>Nhập 1 Mảng Màu </label>
+                        <input
+                            value={arrColor}
+                            placeholder="Ví dụ:   đỏ,xanh,vàng "
+                            onChange={(e) => setArrColor(e.target.value)}
+                            type="text" className="form-control" />
+                    </div>
                 </div>
                 <div className="form-group col-12 mt-3 ">
                     <div className="add-img-container">
