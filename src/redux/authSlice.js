@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
 
 const authSlice = createSlice({
     name: "auth",
@@ -28,6 +29,7 @@ const authSlice = createSlice({
         loginFailed: (state) => {
             state.login.isFetching = false;
             state.login.error = true;
+            toast.error('Bạn nhập sai email hoặc mật khẩu, vui lòng hãy thử lại!')
         },
         registerStart: (state) => {
             state.register.isFetching = true;
@@ -52,6 +54,7 @@ const authSlice = createSlice({
         logOutFailed: (state) => {
             state.login.isFetching = false;
             state.login.error = true;
+
         },
         logOutStart: (state) => {
             state.login.isFetching = true;

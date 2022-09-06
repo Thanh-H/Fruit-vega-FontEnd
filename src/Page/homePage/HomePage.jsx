@@ -13,15 +13,21 @@ export const HomePage = () => {
         <div className="homePage-container">
             <Header />
             <Banner />
+            {/* Quần áo */}
+            <Products
+                limitItem={8}
+                productType={'clothes'}
+                nameProduct={'Quần áo'}
+            />
             {/* Đồng hồ */}
             <Products
-                limitItem={20}
+                limitItem={8}
                 productType={'watch'}
                 nameProduct={'Đồng Hồ'}
             />
             {/* Móc khóa */}
             <Products
-                limitItem={20}
+                limitItem={8}
                 productType={'keyChain'}
                 nameProduct={'Móc khóa'}
             />

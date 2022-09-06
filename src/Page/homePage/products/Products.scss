@@ -1,5 +1,6 @@
 .product-container {
     width: 100%;
+    margin-bottom: 36px;
 
     .product-top-content {
         display: flex;
@@ -12,7 +13,11 @@
             font-weight: 600;
             cursor: pointer;
 
-            span {
+            a {
+
+                text-decoration: none;
+                color: var(--bs-body-color);
+
                 &:hover {
                     color: var(--main-color);
                 }

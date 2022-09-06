@@ -27,6 +27,7 @@ export const SideBar = (props) => {
     let userName = useSelector((state => state.auth.login.userInfor?.userName))
     let [showSubKeyChain, setShowSubKeyChain] = useState(false)
     let [showSubBalo, setShowSubBalo] = useState(false)
+    let [showSubClothes, setShowSubClothes] = useState(false)
 
     let handleCloseSideBar = () => {
         handleOpenMenu('close')
@@ -34,13 +35,20 @@ export const SideBar = (props) => {
     }
 
     let handleShowSubItem = (id) => {
+        if (id === 'clothes') {
+            setShowSubClothes(!showSubClothes)
+            setShowSubBalo(false)
+            setShowSubKeyChain(false)
+        }
         if (id === 'keychain') {
             setShowSubKeyChain(!showSubKeyChain)
             setShowSubBalo(false)
+            setShowSubClothes(false)
         }
         if (id === 'balo') {
             setShowSubBalo(!showSubBalo)
             setShowSubKeyChain(false)
+            setShowSubClothes(false)
         }
     }
     let handleGoToLoginPage = () => {
@@ -69,20 +77,28 @@ export const SideBar = (props) => {
 
                         </div>
                         <div className="center-content">
+                            <ul> <span>Quần áo</span> <i onClick={() => handleShowSubItem('clothes')}> < FontAwesomeIcon icon={showSubClothes === false ? faChevronDown : faChevronUp} /></i>
+                                {showSubClothes === true ?
+                                    <>  <li >Quần tây</li>
+                                        <li >Quần jean</li>
+                                        <li >Quần kaki</li>
+                                        <li>Áo sơ mi</li>
+                                        <li>Áo thun</li>
+                                    </> : ''}
+                            </ul>
                             <ul> <span>Móc khóa</span>  <i onClick={() => handleShowSubItem('keychain')}>< FontAwesomeIcon icon={showSubKeyChain === false ? faChevronDown : faChevronUp} /></i>
                                 {showSubKeyChain === true ?
-                                    <>  <li >Móc khóa nhựa dẻo</li>
+                                    <>  <li>Móc khóa nhựa dẻo</li>
                                         <li>Móc khóa inox</li>
                                         <li>Móc khóa mika</li>
                                     </> : ''}
                             </ul>
-                            <ul> <span>Balo</span> <i onClick={() => handleShowSubItem('balo')}> <FontAwesomeIcon icon={showSubBalo === false ? faChevronDown : faChevronUp} /> </i>
+                            <ul> <span>Đồng Hồ</span> <i onClick={() => handleShowSubItem('balo')}> <FontAwesomeIcon icon={showSubBalo === false ? faChevronDown : faChevronUp} /> </i>
                                 {showSubBalo === true ?
-                                    <> <li>Balo học sinh</li>
-                                        <li>Balo Laptop</li>
+                                    <> <li>Đồng Cơ</li>
+                                        <li>Đồng hồ Điện tử</li>
                                     </> : ''}
                             </ul>
-                            <ul> <span>Túi xách</span> <i> <FontAwesomeIcon icon={faChevronDown} /></i> </ul>
                             <ul> <span>All</span> </ul>
                             <ul> <span>SALE</span> </ul>
                         </div>

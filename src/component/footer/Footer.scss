@@ -1,7 +1,101 @@
 .footer-container {
-    border-top: dashed 1px #e0d9d6;
+    width: 100%;
+    padding-top: 36px;
+    display: flex;
+    color: #ffff;
+    background-color: #000;
+    flex-direction: column;
+    justify-content: center;
+
+
+    .footer-top {
+        width: 100%;
+        justify-content: center;
+        // padding-top: 16px;
+        color: #ffff;
+
+        .content-container {
+            width: 94%;
+            margin: 0 auto;
+        }
+
+        .pay-gate-way__content {
+            list-style-type: none;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .pay-gate-way__content>li>a>img {
+            width: 48px;
+        }
+
+        .list-link-footer-top {
+            padding-left: 0;
+            font-size: 14px;
+        }
+
+        .list-link-footer-top>li {
+            list-style-type: none;
+            margin-bottom: 8px;
+
+        }
+
+        .list-link-footer-top>li>a {
+            text-decoration: none;
+            font-size: 14px;
+            color: #ffff
+        }
+
+        .logo-dienthoaivui {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .block-right-dtv>svg {
+            height: 18px;
+
+        }
+
+        .block-right-dtv>img {
+            height: 22px;
+        }
+
+        .logo-dienthoaivui {
+            font-size: 12px;
+            text-decoration: none;
+            color: #ffff;
+            padding: 8px 10px;
+            margin: 5px 0 10px;
+            border-radius: 10px;
+
+        }
+
+        .logo-dienthoaivui.logo--red {
+            background-color: #d70018;
+        }
+
+        .logo-dienthoaivui.logo--blue {
+            background-color: #334168;
+        }
+
+        .block-left-dtv {
+            font-weight: 700;
+        }
+
+        .block-left-dtv>strong>span {
+            font-size: 10px;
+        }
+
+        .block-right-dtv {
+            width: 105px;
+
+        }
+    }
 
     .footer-content {
+        border-top: dashed 1px #e0d9d6;
+
         display: flex;
         justify-content: center;
         align-items: center;

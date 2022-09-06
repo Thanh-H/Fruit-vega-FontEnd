@@ -58,16 +58,16 @@ export const DetailProduct = () => {
     }
 
     let handleAddToCard = () => {
+        let data = buildDataProductForCart()
         if (detailProduct.productType === 'clothes') {
             if (!chooseSize) {
                 toast.error('Vui lòng chọn size')
             }
             if (!chooseColor) {
-                toast.error('Vui lòng chọn size')
+                toast.error('Vui lòng chọn màu')
             }
-        }
-        let data = buildDataProductForCart()
-        createProductInCart(data, dispatch)
+            if (chooseColor && chooseSize) { createProductInCart(data, dispatch) }
+        } else { createProductInCart(data, dispatch) }
 
         setOpenCart(!openCart)
 
@@ -112,32 +112,33 @@ export const DetailProduct = () => {
     };
 
     return (
-        <div className='detail-product-container'>
-            <Header
-                openCart={openCart}
-                closeCartFromDetailPro={closeCart} />
+        <div>
+            <div className='detail-product-container'>
+                <Header
+                    openCart={openCart}
+                    closeCartFromDetailPro={closeCart} />
 
-            <div className="row">
-                <div className="top-content ">
-                    <div className="content-left-container col-md-6 col-12">
-                        <div className='content-left'>
-                            <Slider {...settings}>
-                                {detailProduct?.arrImage && detailProduct?.arrImage.length > 0 && detailProduct?.arrImage.slice(0, 10).map((item, index) => {
-                                    return (<div key={index} className='array-image'>
-                                        <img src={item.image} alt="" />
-                                    </div>)
-                                })}
-                            </Slider>
-                        </div>
-                    </div>
-                    <div className="content-right-container col-md-6 col-12">
-                        <div className="content-right">
-                            <div className='content-right-header'>
-                                <h2 className='product-name'> {detailProduct?.productTitle}</h2>
-                                <span>{detailProduct?.productCode}</span>
+                <div className="row">
+                    <div className="top-content ">
+                        <div className="content-left-container col-md-6 col-12">
+                            <div className='content-left'>
+                                <Slider {...settings}>
+                                    {detailProduct?.arrImage && detailProduct?.arrImage.length > 0 && detailProduct?.arrImage.slice(0, 10).map((item, index) => {
+                                        return (<div key={index} className='array-image'>
+                                            <img src={item.image} alt="" />
+                                        </div>)
+                                    })}
+                                </Slider>
                             </div>
-                            <div className="content-right-body">
-                                <div className="price">
+                        </div>
+                        <div className="content-right-container col-md-6 col-12">
+                            <div className="content-right">
+                                <div className='content-right-header'>
+                                    <h2 className='product-name'> {detailProduct?.productTitle}</h2>
+                                    <span>{detailProduct?.productCode}</span>
+                                </div>
+                                <div className="content-right-body">
+                                    {/* <div className="price">
                                     <span className='child-price'>
                                         <NumberFormat
                                             value={detailProduct?.currentPrice}
@@ -145,65 +146,97 @@ export const DetailProduct = () => {
                                             thousandSeparator={true}
                                             suffix={'đ'} />
                                     </span>
-                                </div>
-                                <div className="size">
-                                    <div className="size-block-left">
-                                        {detailProduct && detailProduct.arrSize && detailProduct.arrSize[0] !== '' && detailProduct.arrSize.length > 0 ? detailProduct.arrSize.map((item, index) => {
+                                  
+                                </div> */}
+
+                                    {!detailProduct?.oldPrice ? <div className="price">
+                                        <span className='child-price'>
+                                            <NumberFormat
+                                                value={detailProduct?.currentPrice}
+                                                displayType={'text'}
+                                                thousandSeparator={true}
+                                                suffix={'đ'} />
+                                        </span>
+                                    </div>
+                                        :
+                                        <div className="box-price-sale">
+                                            {detailProduct?.oldPrice && <div className='sale'>   {Math.floor(100 - ((detailProduct.currentPrice) / (detailProduct.oldPrice)) * 100)}%</div>}
+                                            <span className='curent-price'>
+                                                <NumberFormat
+                                                    value={detailProduct?.currentPrice}
+                                                    displayType={'text'}
+                                                    thousandSeparator={true}
+                                                    suffix={'đ'} />
+                                            </span>
+                                            <del className="old-price">
+                                                <NumberFormat
+                                                    value={detailProduct?.oldPrice}
+                                                    displayType={'text'}
+                                                    thousandSeparator={true}
+                                                    suffix={'đ'} />
+                                            </del>
+                                        </div>}
+                                    <div className="size">
+                                        <div className="size-block-left">
+                                            {detailProduct && detailProduct.arrSize && detailProduct.arrSize[0] !== '' && detailProduct.arrSize.length > 0 ? detailProduct.arrSize.map((item, index) => {
+                                                return (
+                                                    <div key={index} className="size-item-container">
+                                                        <label className={changeColorSize === index && 'active'}
+                                                            onClick={() => {
+                                                                setChangeColorSize(index)
+                                                                setChooseSize(item)
+                                                            }} >{item}</label>
+                                                    </div>
+                                                )
+                                            })
+                                                : ''}
+                                            {detailProduct && detailProduct.arrSize && detailProduct.arrSize[0] !== '' && detailProduct.arrSize.length > 0 && <div className="how-to-choose-size">CÁCH CHỌN SIZE</div>}
+                                        </div>
+
+                                    </div>
+
+                                    <div className="color">
+                                        {detailProduct && detailProduct.arrColor[0] !== '' && detailProduct.arrColor && detailProduct.arrColor.length > 0 ? detailProduct.arrColor.map((item, index) => {
                                             return (
-                                                <div key={index} className="size-item-container">
-                                                    <label className={changeColorSize === index && 'active'}
+                                                <div className="color-container">
+                                                    <label className={changeColorColor === index && 'active'}
                                                         onClick={() => {
-                                                            setChangeColorSize(index)
-                                                            setChooseSize(item)
-                                                        }} >{item}</label>
+                                                            setChangeColorColor(index)
+                                                            setChooseColor(item)
+                                                        }} > {item} </label>
                                                 </div>
                                             )
-                                        })
-                                            : ''}
+                                        }) : ''}
+
                                     </div>
-                                    {detailProduct && detailProduct.arrSize && detailProduct.arrSize[0] !== '' && detailProduct.arrSize.length > 0 && <div className="how-to-choose-size">CÁCH CHỌN SIZE</div>}
                                 </div>
-
-                                <div className="color">
-                                    {detailProduct && detailProduct.arrColor[0] !== '' && detailProduct.arrColor && detailProduct.arrColor.length > 0 ? detailProduct.arrColor.map((item, index) => {
-                                        return (
-                                            <div className="color-container">
-                                                <label className={changeColorColor === index && 'active'}
-                                                    onClick={() => {
-                                                        setChangeColorColor(index)
-                                                        setChooseColor(item)
-                                                    }} > {item} </label>
-                                            </div>
-                                        )
-                                    }) : ''}
-
+                                <div className="add-to-cart-container">
+                                    <div className="choose-quantity">
+                                        <button onClick={() => quantity > 1 && SetQuantity(--quantity)} className='subtraction'>-</button>
+                                        <input value={quantity} disabled type="text" />
+                                        <button onClick={() => SetQuantity(++quantity)} className='addition'>+</button>
+                                    </div>
+                                    <div onClick={() => { handleAddToCard() }} className="add-to-cart">Thêm vào giỏ</div>
                                 </div>
                             </div>
-                            <div className="add-to-cart-container">
-                                <div className="choose-quantity">
-                                    <button onClick={() => quantity > 1 && SetQuantity(--quantity)} className='subtraction'>-</button>
-                                    <input value={quantity} disabled type="text" />
-                                    <button onClick={() => SetQuantity(++quantity)} className='addition'>+</button>
-                                </div>
-                                <div onClick={() => { handleAddToCard() }} className="add-to-cart">Thêm vào giỏ</div>
-                            </div>
+
                         </div>
-
                     </div>
                 </div>
-            </div>
-            <div className="description">
-                <div dangerouslySetInnerHTML={{ __html: detailProduct?.contentHTML }}></div>
-            </div>
-            <div className=" related-products">
-                <h2 className='related-products-title'> <span>Sản phẩm liên quan</span> </h2>
-                <Products
-                    limitItem={4}
-                    productType={`${productType}`}
-                />
+                <div className="description">
+                    <div dangerouslySetInnerHTML={{ __html: detailProduct?.contentHTML }}></div>
+                </div>
+                <div className=" related-products">
+                    <h2 className='related-products-title'> <span>Sản phẩm liên quan</span> </h2>
+                    <Products
+                        limitItem={4}
+                        productType={`${productType}`}
+                    />
+                </div>
+
+
             </div>
             <Footer />
-
         </div>
     )
 }

@@ -14,7 +14,7 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 const mdParser = new MarkdownIt(/* Markdown-it options */);
 export const ProductManage = () => {
     let [id, setId] = useState()
-    let [productType, setProductType] = useState('keyChain')
+    let [productType, setProductType] = useState('clothes')
     let [productTitle, setProductTitle] = useState('')
     let [productCode, setProductCode] = useState('')
     let [currentPrice, setCurrentPrice] = useState('')
@@ -213,6 +213,7 @@ export const ProductManage = () => {
                         <label >Loại sản phẩm</label>
                         <select value={productType} className="form-select"
                             onChange={(e) => setProductType(e.target.value)}  >
+                            <option value={'clothes'}>Quần áo</option>
                             <option value={'keyChain'}>Móc khóa</option>
                             <option value={'watch'}>Đồng Hồ</option>
                         </select>
@@ -350,7 +351,10 @@ export const ProductManage = () => {
                             <td> {item.productCode ? item.productCode : 0} </td>
                             <td> {item.inStock === true ? 'Còn hàng' : 'Hết hàng'} </td>
                             <td style={{ textAlign: 'center' }}>
-                                <FontAwesomeIcon onClick={() => handleEditProduct(item)} style={{ marginRight: '30px' }} className='btn  btn-warning' icon={faPenToSquare} ></FontAwesomeIcon>
+                                <FontAwesomeIcon onClick={() => {
+                                    window.scrollTo(0, 0)
+                                    handleEditProduct(item)
+                                }} style={{ marginRight: '30px' }} className='btn  btn-warning' icon={faPenToSquare} ></FontAwesomeIcon>
                                 <FontAwesomeIcon onClick={() => handleDeleteProduct(item._id)} style={{ marginLeft: '30px' }} className='btn btn-danger' icon={faTrash}  ></FontAwesomeIcon>
                             </td>
                         </tr>)

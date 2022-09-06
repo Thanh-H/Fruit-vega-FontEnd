@@ -56,10 +56,7 @@ export const Products = (props) => {
                     setAllProducts(x)
                 }
             }
-
         }
-
-
         getAllProduct()
     }, [sortBy, id])
 
@@ -67,12 +64,20 @@ export const Products = (props) => {
     let HandleRedirec = (item) => {
         navigate(`/Detail-product/${item._id}/${item.productType}`)
     }
+    let gotoProductByType = (e) => {
+        navigate(`/products/${productType}`)
+    }
 
     return (
         <div className="product-container ">
             {nameProduct && <div className="product-top-content">
                 <h1 className="product-title">
-                    <span>{nameProduct}</span>
+                    <a href={`/products/${productType}`}
+                        onClick={(e) => {
+                            e.preventDefault()
+                            gotoProductByType(productType)
+                        }}>{nameProduct}</a>
+
                 </h1>
                 <select onChange={(e) => { setSortBy(e.target.value) }}
                     value={sortBy} className="product-sort">

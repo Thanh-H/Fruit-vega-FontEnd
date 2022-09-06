@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { Footer } from '../../component/footer/Footer'
 import { loginUser } from "../../redux/action"
-import './Login.scss'
+// import './Login.scss'
 
 export const Login = () => {
     let [email, setEmai] = useState('')
@@ -85,7 +85,7 @@ export const Login = () => {
                     </div>
                 </div>
             </div>
-            <Footer />
+
         </>
     )
 }
