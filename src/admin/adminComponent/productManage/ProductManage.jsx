@@ -204,7 +204,7 @@ export const ProductManage = () => {
     let handleCancel = () => {
         hanldeClearState()
     }
-    console.log(idImgCoppy)
+
     return (
         <div className="user-manage-container">
             <form >

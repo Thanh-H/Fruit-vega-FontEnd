@@ -12,7 +12,10 @@ import {
   getAllUsersSuccess, getAllUsersFailed,
   deleteUsersSuccess, deleteUserFailed
 } from "./userSlice";
-import { createCartSuccess, createCartFailed } from './productSlice'
+import {
+  createCartSuccess, createCartFailed, deleteCartSuccess,
+  deleteCartFailed
+} from './productSlice'
 import { toast } from 'react-toastify';
 import { useSelector } from 'react-redux'
 
@@ -84,7 +87,6 @@ export const deleteUser = async (id, dispatch, accessToken) => {
 export const CreateUser = async (userName, email, password, role) => {
   try {
     let res = await handleRegisterService(userName, email, password, role)
-    console.log(res)
     if (res && res.errCode === 0) {
       toast.success('create user succeed!')
     }
@@ -105,5 +107,13 @@ export const createProductInCart = (product, dispatch) => {
     }
   } catch (error) {
     dispatch(createCartFailed())
+  }
+}
+
+export const deleteProductInCart = (index, dispatch) => {
+  try {
+    dispatch(deleteCartSuccess(index))
+  } catch (error) {
+    dispatch(deleteCartFailed())
   }
 }

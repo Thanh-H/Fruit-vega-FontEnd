@@ -18,7 +18,7 @@
         width: 450px;
         background-color: white;
         z-index: 102;
-        overflow: hidden;
+        overflow-y: scroll;
         transform: translateX(+100%);
         transition: transform linear 0.4s;
     }
@@ -42,7 +42,7 @@
 
     @media (max-width: 480px) {
         .sidebar-container-content {
-            width: 80%;
+            width: 88%;
 
             .menu-container {
                 width: 90%;

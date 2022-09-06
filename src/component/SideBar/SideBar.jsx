@@ -30,6 +30,7 @@ export const SideBar = (props) => {
 
     let handleCloseSideBar = () => {
         handleOpenMenu('close')
+
     }
 
     let handleShowSubItem = (id) => {

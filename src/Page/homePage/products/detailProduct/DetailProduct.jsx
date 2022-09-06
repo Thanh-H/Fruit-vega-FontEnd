@@ -14,6 +14,7 @@ import NumberFormat from 'react-number-format';
 import { useDispatch } from 'react-redux'
 import { createProductInCart } from '../../../../redux/action'
 import { toast } from 'react-toastify'
+import { SideBar } from '../../../../component/SideBar/SideBar'
 
 
 
@@ -27,6 +28,7 @@ export const DetailProduct = () => {
 
     let [chooseSize, setChooseSize] = useState()
     let [chooseColor, setChooseColor] = useState()
+    let [openCart, setOpenCart] = useState(false)
 
     let dispatch = useDispatch()
 
@@ -45,8 +47,9 @@ export const DetailProduct = () => {
         let dataProductForCart = {
             id: detailProduct._id,
             productTitle: detailProduct.productTitle,
+            image: detailProduct.arrImage[0].image,
             productCode: detailProduct.productCode,
-            description: ` ${chooseSize}/${chooseColor}`,
+            description: `${chooseSize}/${chooseColor}`,
             price: detailProduct.currentPrice,
             quantity: quantity
 
@@ -66,7 +69,13 @@ export const DetailProduct = () => {
         let data = buildDataProductForCart()
         createProductInCart(data, dispatch)
 
+        setOpenCart(!openCart)
+
     }
+    let closeCart = () => {
+        setOpenCart(false)
+    }
+
 
     function SampleNextArrow(props) {
         const { className, style, onClick } = props;
@@ -104,7 +113,10 @@ export const DetailProduct = () => {
 
     return (
         <div className='detail-product-container'>
-            <Header />
+            <Header
+                openCart={openCart}
+                closeCartFromDetailPro={closeCart} />
+
             <div className="row">
                 <div className="top-content ">
                     <div className="content-left-container col-md-6 col-12">

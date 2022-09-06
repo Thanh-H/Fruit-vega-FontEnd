@@ -1,6 +1,6 @@
 import './Header.scss'
 // import logo from '../../assets/logo.PNG'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { faUser } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBagShopping, faBars, faCartShopping, faMagnifyingGlass, faPager } from '@fortawesome/free-solid-svg-icons'
@@ -9,11 +9,16 @@ import { SideBar } from '../SideBar/SideBar'
 import { useDispatch, useSelector } from 'react-redux'
 import logo from './logo.svg'
 
-export const Header = () => {
+
+export const Header = (props) => {
+
+    let quantity = useSelector((state) => state.product.cart?.quantity)
     let navigate = useNavigate()
     let goToHomePage = () => {
         navigate('/')
     }
+    let { closeCartFromDetailPro } = props
+    let opencartFromParent = props.openCart
 
     let [openMenuBar, setOpenMenuBar] = useState(false)
     let [openCart, setOpenCart] = useState(false)
@@ -22,6 +27,11 @@ export const Header = () => {
 
     let userName = useSelector((state => state.auth.login.userInfor?.userName))
     let isAdmin = useSelector((state) => state.auth.login.userInfor?.isAdmin)
+
+    useEffect(() => {
+        setOpenCart(opencartFromParent)
+    }, [props])
+
 
     let handleOpenMenu = (id) => {
         id === 'menu' && setOpenMenuBar(!openMenuBar)
@@ -33,6 +43,7 @@ export const Header = () => {
             setOpenSearch(false)
         }
         id === 'admin' && navigate('/system')
+        closeCartFromDetailPro()
     }
     let handleGoToLoginPage = () => {
         navigate('/login')
@@ -74,6 +85,9 @@ export const Header = () => {
                         <div className="cart"
                             onClick={() => handleOpenMenu('cart')}>
                             <FontAwesomeIcon icon={faBagShopping}></FontAwesomeIcon>
+                            {quantity > 0 ? <div className="notification-quantity">
+                                {quantity < 10 ? quantity : '9+'}
+                            </div> : ''}
                         </div>
                         <div className="menu"
                             onClick={() => handleOpenMenu('menu')}
@@ -89,6 +103,7 @@ export const Header = () => {
                 openSearch={openSearch}
                 openMenuBar={openMenuBar}
                 handleOpenMenu={handleOpenMenu}
+
             />
         </div>
     )

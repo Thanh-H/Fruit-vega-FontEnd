@@ -73,6 +73,8 @@
             }
 
             .right-content {
+                position: relative;
+                ;
                 width: 25%;
                 display: flex;
                 justify-content: flex-end;
@@ -109,6 +111,23 @@
                         border: 1px solid #eb5b5c;
                     }
 
+                }
+
+                .cart {
+                    .notification-quantity {
+                        font-size: 14px;
+                        float: left;
+                        position: absolute;
+                        right: 26px;
+                        top: 11px;
+                        background-color: var(--main-color);
+                        color: white;
+                        width: 25px;
+                        text-align: center;
+                        border-radius: 40%;
+                        line-height: 18px;
+                        letter-spacing: -1px;
+                    }
                 }
 
                 .cart,

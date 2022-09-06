@@ -26,7 +26,6 @@ const updateUserService = (data) => {
 }
 
 const createANewProduct = (data) => {
-    console.log(data)
     return axios.post('/api/create-new-product', data)
 }
 
