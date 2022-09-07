@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { logOutUser } from '../../redux/action'
 import { Cart } from './cart/Cart'
-import { Search } from './search/search'
+import { MenuSearch } from './search/MenuSearch'
 
 
 export const SideBar = (props) => {
@@ -107,7 +107,7 @@ export const SideBar = (props) => {
 
 
                     {openCart === true && <Cart handleCloseSideBarFromParent={handleCloseSideBar} />}
-                    {openSearch === true && <Search handleCloseSideBarFromParent={handleCloseSideBar} />}
+                    {openSearch === true && <MenuSearch handleCloseSideBarFromParent={handleCloseSideBar} />}
                 </div>
             </div>
 

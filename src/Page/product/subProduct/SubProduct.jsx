@@ -11,8 +11,6 @@ import { useParams } from 'react-router-dom'
 export const SubProducts = (props) => {
     let { subProductType } = useParams()
 
-    console.log(subProductType)
-
     let limitItem = props.limitItem
     let nameProduct = props.nameProduct
     let [allProducts, setAllProducts] = useState()

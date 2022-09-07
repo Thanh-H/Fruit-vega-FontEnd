@@ -10,6 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { DetailProduct } from "./Page/homePage/products/detailProduct/DetailProduct";
 import { ProductByType } from "./Page/product/ProductByType";
 import { ProductBySubType } from "./Page/product/productBySubType/ProductBySubType";
+import { PageResultSearch } from "./component/navSearch/PageResultSearch";
 function App() {
   let isAdmin = useSelector((state) => state.auth.login.userInfor?.isAdmin)
   return (
@@ -28,7 +29,7 @@ function App() {
 
       />
       <Routes>
-        <Route path="/system/*" element={< System />} />
+        {isAdmin && <Route path="/system/*" element={< System />} />}
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
@@ -36,6 +37,7 @@ function App() {
         <Route path="/Detail-product/:id/:type" element={<DetailProduct />} />
         <Route path="/products/:productType" element={<ProductByType />} />
         <Route path="/products/sub-product/:subProductType" element={<ProductBySubType />} />
+        <Route path="/search/:searchWord" element={<PageResultSearch />} />
       </Routes>
     </BrowserRouter>
 

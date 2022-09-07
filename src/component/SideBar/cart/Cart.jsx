@@ -29,7 +29,7 @@ export const Cart = (props) => {
     let handleOrder = () => {
         navigate('/')
     }
-    console.log(arrProduct)
+
     return (
         <div className="cart-container">
             <div className="top-content">
@@ -42,7 +42,7 @@ export const Cart = (props) => {
                 <div className="center-content-top">
                     {arrProduct && arrProduct.length > 0 && arrProduct.map((item, index) => {
                         return (
-                            <div className="product-box">
+                            <div key={index} className="product-box">
                                 <div onClick={() => navigate(`/Detail-product/${item.id}/${item.productType}`)} style={{ backgroundImage: `url(${item.image})` }} className="image"></div>
                                 <div className="conten-box">
                                     <div className="top-box">

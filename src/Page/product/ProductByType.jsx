@@ -8,7 +8,7 @@ import { useState } from 'react'
 
 export const ProductByType = () => {
     let { productType } = useParams()
-    console.log(productType)
+
     let [nameProduct, setNameProduct] = useState()
     useEffect(() => {
         if (productType === 'keyChain') {

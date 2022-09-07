@@ -69,6 +69,11 @@
                 .icon-glass {
                     position: absolute;
                     right: 15px;
+
+                    svg {
+                        font-size: 30px;
+                    }
+
                 }
 
 
@@ -134,10 +139,12 @@
 
                 .cart,
                 .search {
+
                     display: flex;
                     font-size: 22px;
                     margin-right: 20px;
                     cursor: pointer;
+                    line-height: 30px;
 
                     &:hover {
                         color: #eb5b5c;
@@ -145,6 +152,10 @@
                 }
 
                 .search {
+                    svg {
+                        font-size: 30px;
+                    }
+
                     display: none;
                 }
 
@@ -191,6 +202,14 @@
 
 
     }
+
+    .Nav-search-component {
+        position: absolute;
+        left: 26%;
+        width: 40%;
+        top: 65px;
+    }
+
 
     .clear-space {
         width: 100%;

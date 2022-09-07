@@ -54,10 +54,25 @@
 
         i {
             position: absolute;
-            font-size: 20px;
             right: 15px;
+
+            svg {
+                font-size: 30px;
+            }
         }
 
+    }
+
+    .nav-search-component {
+        width: 100%;
+
+        .nav-search-container {
+            box-shadow: none;
+
+            .nav-search-content {
+                width: 100%;
+            }
+        }
     }
 
     .bottom-content {}

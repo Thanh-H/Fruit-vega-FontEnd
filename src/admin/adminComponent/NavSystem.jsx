@@ -22,10 +22,10 @@ export const NavSystem = () => {
         <>
             <div className="topnav">
                 <div className='admin-title'>Admin</div>
-                <NavLink className="" to={`/system/user-manage/${id}`}>Người dùng</NavLink>
-                <NavLink className="" to={`/system/product-manage/${id}`}>Sản phẩm</NavLink>
-                <NavLink className="" to={`/system/order-manage/${id}`}>Đơn hàng</NavLink>
-                <NavLink className="" to={`/system/history/${id}`}>Lịch sử</NavLink>
+                <NavLink to={`/system/user-manage/${id}`}>Người dùng</NavLink>
+                <NavLink to={`/system/product-manage/${id}`}>Sản phẩm</NavLink>
+                <NavLink to={`/system/order-manage/${id}`}>Đơn hàng</NavLink>
+                <NavLink to={`/system/history/${id}`}>Lịch sử</NavLink>
                 <div className="user-name">hi {userName ? userName : ''}! </div>
                 <div onClick={() => handleLogOut()} className="log-out">
                     <FontAwesomeIcon icon={faRightFromBracket} ></FontAwesomeIcon>

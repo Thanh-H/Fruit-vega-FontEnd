@@ -4,12 +4,12 @@ import './Footer.scss'
 export const Footer = () => {
     return (
         <div className='footer-container'>
-            <div class="footer-top">
-                <div class="footer-container ">
-                    <div class="row content-container">
+            <div className="footer-top">
+                <div className="footer-container ">
+                    <div className="row content-container">
 
-                        <div class="col-12 col-lg-4">
-                            <ul class="list-link-footer-top">
+                        <div className="col-12 col-lg-4">
+                            <ul className="list-link-footer-top">
                                 <h5> Thông tin</h5>
                                 <li>Giới thiệu <a href=""> </a></li>
                                 <li>Gọi mua hàng<a href=""> 123456789 </a>(8h00 - 22h00)</li>
@@ -17,8 +17,8 @@ export const Footer = () => {
                                 <li>Đối tác <a href=""> </a></li>
                             </ul>
                         </div>
-                        <div class="col-12 col-lg-4">
-                            <ul class="list-link-footer-top">
+                        <div className="col-12 col-lg-4">
+                            <ul className="list-link-footer-top">
                                 <h5>  Chính sách</h5>
                                 <li><a href="">   Chính sách đổi hàng  </a></li>
                                 <li><a href=""> Chính sách bảo hành  </a></li>
@@ -27,8 +27,8 @@ export const Footer = () => {
                             </ul>
                         </div>
 
-                        <div class="col-12 col-lg-4">
-                            <ul class="list-link-footer-top">
+                        <div className="col-12 col-lg-4">
+                            <ul className="list-link-footer-top">
                                 <h5>  FAQ</h5>
                                 <li><a href=""> Thanh toán và vận chuyển </a></li>
                                 <li><a href=""> Hướng dẫn chọn size </a></li>

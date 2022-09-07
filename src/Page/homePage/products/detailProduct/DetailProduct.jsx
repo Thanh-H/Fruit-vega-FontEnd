@@ -34,6 +34,10 @@ export const DetailProduct = () => {
 
     useEffect(() => {
         window.scrollTo(0, 0)
+    }, [])
+
+    useEffect(() => {
+
         let getDetailProduct = async () => {
             let res = await getProductByIdService(id)
             if (res && res.errCode === 0) {
@@ -41,7 +45,8 @@ export const DetailProduct = () => {
             }
         }
         getDetailProduct()
-    }, [id])
+        document.title = `${detailProduct?.productTitle}`
+    }, [id, detailProduct])
 
     let buildDataProductForCart = () => {
         let dataProductForCart = {

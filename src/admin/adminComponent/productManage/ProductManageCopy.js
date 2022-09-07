@@ -277,7 +277,7 @@ export const ProductManage = () => {
                     <input style={{ width: '100px', height: '36px', textAlign: 'center' }}
                         onChange={(e) => SetGetQtyImg(e.target.value)}
                         onKeyDown={(e) => whenKeyEnterDown(e)}
-                        type="number" className=""
+                        type="number"
                     />  &nbsp; <div onClick={() => handeleConverStringToNumber()} className='btn btn-primary'>ok</div>
 
                     <div className='arr-img-container'>{Array.from(Array(imgLength), (e, i) => {
