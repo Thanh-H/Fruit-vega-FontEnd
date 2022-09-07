@@ -1,5 +1,5 @@
 import React from 'react'
-import './Products.scss'
+import './SubProduct.scss'
 import { getAllProductService } from '../../../service/userService'
 import { useEffect } from 'react'
 import { useState } from 'react'
@@ -8,11 +8,12 @@ import { useNavigate } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
 
 
-export const Products = (props) => {
-    let { id } = useParams()
+export const SubProducts = (props) => {
+    let { subProductType } = useParams()
+
+    console.log(subProductType)
 
     let limitItem = props.limitItem
-    let productType = props.productType
     let nameProduct = props.nameProduct
     let [allProducts, setAllProducts] = useState()
     let [sortBy, setSortBy] = useState('outstanding')
@@ -22,7 +23,7 @@ export const Products = (props) => {
             if (res && res.errCode === 0) {
                 let allProducts = res.data
                 let productS = allProducts.filter((item, index) => {
-                    if (item.productType === productType) return item
+                    if (item.subProductType === subProductType) return item
                 })
                 let allProductsCoppy = [...productS.reverse()]
                 if (sortBy === 'outstanding') {
@@ -48,34 +49,28 @@ export const Products = (props) => {
                     })
                     setAllProducts(sortByNTo1)
                 }
-                // create related products
-                let coppyProducts = [...productS.reverse()]
-                if (id) {
-                    let x = coppyProducts.filter((item, index) => { if (item._id !== id) return item }
-                    )
-                    setAllProducts(x)
-                }
+
             }
         }
         getAllProduct()
-    }, [sortBy, id, productType])
+    }, [sortBy, subProductType])
 
     let navigate = useNavigate()
     let HandleRedirec = (item) => {
         navigate(`/Detail-product/${item._id}/${item.productType}`)
     }
     let gotoProductByType = (e) => {
-        navigate(`/products/${productType}`)
+        navigate(`/products/sub-product/${subProductType}`)
     }
 
     return (
         <div className="product-container ">
-            {nameProduct && <div className="product-top-content">
+            {nameProduct ? <div className="product-top-content">
                 <h1 className="product-title">
-                    <a href={`/products/${productType}`}
+                    <a href={`/products/sub-product/${subProductType}`}
                         onClick={(e) => {
                             e.preventDefault()
-                            gotoProductByType(productType)
+                            gotoProductByType(subProductType)
                         }}>{nameProduct}</a>
 
                 </h1>
@@ -86,7 +81,7 @@ export const Products = (props) => {
                     <option value="n-1">Giá giảm dần</option>
                     <option value="sale">Đang Sale</option>
                 </select>
-            </div>}
+            </div> : ''}
             <div className="product-item-container row">
                 {allProducts && allProducts.length > 0 && allProducts.slice(0, limitItem).map((item, index) => {
                     return (<div key={index} className="product-item-content col-6 col-xl-3 col-md-4">

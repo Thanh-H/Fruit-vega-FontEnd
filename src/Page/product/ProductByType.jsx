@@ -7,8 +7,8 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 
 export const ProductByType = () => {
-
-    let productType = (useParams().productType)
+    let { productType } = useParams()
+    console.log(productType)
     let [nameProduct, setNameProduct] = useState()
     useEffect(() => {
         if (productType === 'keyChain') {
@@ -20,7 +20,7 @@ export const ProductByType = () => {
         if (productType === 'watch') {
             setNameProduct('Đồng hồ')
         }
-    }, productType)
+    }, [productType])
     return (
         <div className='product-by-type-container'>
             <Header />

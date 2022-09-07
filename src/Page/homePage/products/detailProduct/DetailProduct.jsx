@@ -46,6 +46,7 @@ export const DetailProduct = () => {
     let buildDataProductForCart = () => {
         let dataProductForCart = {
             id: detailProduct._id,
+            productType: detailProduct.productType,
             productTitle: detailProduct.productTitle,
             image: detailProduct.arrImage[0].image,
             productCode: detailProduct.productCode,
@@ -138,17 +139,6 @@ export const DetailProduct = () => {
                                     <span>{detailProduct?.productCode}</span>
                                 </div>
                                 <div className="content-right-body">
-                                    {/* <div className="price">
-                                    <span className='child-price'>
-                                        <NumberFormat
-                                            value={detailProduct?.currentPrice}
-                                            displayType={'text'}
-                                            thousandSeparator={true}
-                                            suffix={'đ'} />
-                                    </span>
-                                  
-                                </div> */}
-
                                     {!detailProduct?.oldPrice ? <div className="price">
                                         <span className='child-price'>
                                             <NumberFormat
@@ -176,7 +166,7 @@ export const DetailProduct = () => {
                                                     suffix={'đ'} />
                                             </del>
                                         </div>}
-                                    <div className="size">
+                                    {detailProduct && detailProduct.arrSize && detailProduct.arrSize[0] !== '' && detailProduct.arrSize.length > 0 && <div className="size">
                                         <div className="size-block-left">
                                             {detailProduct && detailProduct.arrSize && detailProduct.arrSize[0] !== '' && detailProduct.arrSize.length > 0 ? detailProduct.arrSize.map((item, index) => {
                                                 return (
@@ -190,10 +180,10 @@ export const DetailProduct = () => {
                                                 )
                                             })
                                                 : ''}
-                                            {detailProduct && detailProduct.arrSize && detailProduct.arrSize[0] !== '' && detailProduct.arrSize.length > 0 && <div className="how-to-choose-size">CÁCH CHỌN SIZE</div>}
+                                            <div className="how-to-choose-size">CÁCH CHỌN SIZE</div>
                                         </div>
 
-                                    </div>
+                                    </div>}
 
                                     <div className="color">
                                         {detailProduct && detailProduct.arrColor[0] !== '' && detailProduct.arrColor && detailProduct.arrColor.length > 0 ? detailProduct.arrColor.map((item, index) => {

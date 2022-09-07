@@ -6,15 +6,20 @@ import './Banner.scss'
 export const Banner = () => {
     var settings = {
         dots: false,
-        infinite: false,
-        speed: 500,
+        infinite: true,
+        autoplay: true,
+        speed: 1000,
+        autoplaySpeed: 5000,
+        cssEase: "ease-out",
         slidesToShow: 1,
         slidesToScroll: 1
     };
     return (
         <div className="banner-container">
             <Slider {...settings}>
-                <div className='banner-item'></div>
+                <div className='banner-item1'></div>
+                <div className='banner-item2'></div>
+
             </Slider>
         </div>
     )

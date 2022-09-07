@@ -77,26 +77,24 @@ export const SideBar = (props) => {
 
                         </div>
                         <div className="center-content">
-                            <ul> <span>Quần áo</span> <i onClick={() => handleShowSubItem('clothes')}> < FontAwesomeIcon icon={showSubClothes === false ? faChevronDown : faChevronUp} /></i>
+                            <ul> <span onClick={() => navigate(`/products/clothes`)}>Quần áo</span> <i onClick={() => handleShowSubItem('clothes')}> < FontAwesomeIcon icon={showSubClothes === false ? faChevronDown : faChevronUp} /></i>
                                 {showSubClothes === true ?
-                                    <>  <li >Quần tây</li>
-                                        <li >Quần jean</li>
-                                        <li >Quần kaki</li>
-                                        <li>Áo sơ mi</li>
-                                        <li>Áo thun</li>
+                                    <>  <li onClick={() => navigate(`/products/sub-product/trousers`)} >Quần </li>
+                                        <li onClick={() => navigate(`/products/sub-product/shirt`)}>Áo</li>
+                                        <li onClick={() => navigate(`/products/sub-product/coat`)}>Áo khoác</li>
                                     </> : ''}
                             </ul>
-                            <ul> <span>Móc khóa</span>  <i onClick={() => handleShowSubItem('keychain')}>< FontAwesomeIcon icon={showSubKeyChain === false ? faChevronDown : faChevronUp} /></i>
+                            <ul> <span onClick={() => navigate(`/products/keyChain`)}>Móc khóa</span>  <i onClick={() => handleShowSubItem('keychain')}>< FontAwesomeIcon icon={showSubKeyChain === false ? faChevronDown : faChevronUp} /></i>
                                 {showSubKeyChain === true ?
-                                    <>  <li>Móc khóa nhựa dẻo</li>
-                                        <li>Móc khóa inox</li>
-                                        <li>Móc khóa mika</li>
+                                    <>  <li onClick={() => navigate(`/products/sub-product/key-plastic`)}>Móc khóa nhựa dẻo</li>
+                                        <li onClick={() => navigate(`/products/sub-product/key-inox`)}>Móc khóa inox</li>
+                                        <li onClick={() => navigate(`/products/sub-product/key-mika`)}>Móc khóa mika</li>
                                     </> : ''}
                             </ul>
-                            <ul> <span>Đồng Hồ</span> <i onClick={() => handleShowSubItem('balo')}> <FontAwesomeIcon icon={showSubBalo === false ? faChevronDown : faChevronUp} /> </i>
+                            <ul> <span onClick={() => navigate(`/products/watch`)}>Đồng Hồ</span> <i onClick={() => handleShowSubItem('balo')}> <FontAwesomeIcon icon={showSubBalo === false ? faChevronDown : faChevronUp} /> </i>
                                 {showSubBalo === true ?
-                                    <> <li>Đồng Cơ</li>
-                                        <li>Đồng hồ Điện tử</li>
+                                    <> <li onClick={() => navigate(`/products/sub-product/w-metal`)}>Đồng dây kim loại</li>
+                                        <li onClick={() => navigate(`/products/sub-product/w-skin`)}>Đồng hồ dây da</li>
                                     </> : ''}
                             </ul>
                             <ul> <span>All</span> </ul>

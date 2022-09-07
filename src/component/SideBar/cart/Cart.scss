@@ -60,6 +60,7 @@
                     background-repeat: no-repeat;
                     width: 85px;
                     height: 85px;
+                    cursor: pointer;
                 }
 
 
@@ -72,7 +73,7 @@
                         width: 100%;
 
                         .title {
-
+                            cursor: pointer;
                             font-size: 12px;
                             font-weight: 600;
                             text-transform: uppercase;
@@ -131,7 +132,7 @@
 
         .center-content-bottom {
             margin-top: 12px;
-            border-top: 2.5px solid var(--main-color);
+            border-top: 2.5px solid #000;
             ;
             display: flex;
             justify-content: space-between;
@@ -151,15 +152,88 @@
 
         .see-cart,
         .pay {
+            margin-left: auto;
+            margin-right: auto;
             background-color: var(--main-color);
             color: white;
-            padding: 12px 16px;
+            padding: 12px 60px;
             cursor: pointer;
             margin-bottom: 160px;
             font-size: 13px;
 
         }
     }
+
+    .form-order-container {
+
+        .form-order-header {
+            .show-hide-order-infor {
+                i {
+                    margin-right: 4px;
+                }
+
+                margin-top: 8px;
+                margin-bottom: 8px;
+                cursor: pointer;
+                flex-direction: row;
+                display: flex;
+                justify-content: space-between;
+
+                .toggle-show-hide-oder-infor {
+                    color: #338dbc;
+                }
+            }
+
+            .form-order-title {
+                margin-top: 16px;
+                font-size: 18px;
+                font-weight: 450;
+            }
+
+            .form-order-discount-code {
+                margin: 8px 0;
+                display: flex;
+                justify-content: space-between;
+
+                input {
+                    width: 60%;
+                }
+            }
+
+
+        }
+
+        .form-order-body {
+            input {
+                margin: 8px 0;
+            }
+        }
+
+        .footer-btn {
+
+
+            margin-bottom: 160px;
+            display: flex;
+            flex-direction: column;
+
+            .btn-top {
+                padding: 10px 0;
+                margin-bottom: 8px;
+            }
+
+            .btn-bottom {
+                margin: 8px 0 160px 0;
+                padding: 10px 0;
+            }
+
+        }
+    }
+
+
+
+
+
+    .form-group {}
 
 }
 
@@ -168,7 +242,7 @@
     .see-cart,
     .pay {
 
-        padding: 10px 10px !important;
+        padding: 10px 40px !important;
     }
 
     .title {

@@ -15,6 +15,7 @@ const mdParser = new MarkdownIt(/* Markdown-it options */);
 export const ProductManage = () => {
     let [id, setId] = useState()
     let [productType, setProductType] = useState('clothes')
+    let [subProductType, setSubProductType] = useState('')
     let [productTitle, setProductTitle] = useState('')
     let [productCode, setProductCode] = useState('')
     let [currentPrice, setCurrentPrice] = useState('')
@@ -119,6 +120,7 @@ export const ProductManage = () => {
         let res = await createANewProduct(
             {
                 productType,
+                subProductType,
                 productTitle,
                 productCode,
                 currentPrice,
@@ -149,6 +151,7 @@ export const ProductManage = () => {
         setIsUpdate(true)
         setCount(++count)
         setProductType(item.productType)
+        setSubProductType(item.subProductType)
         setProductTitle(item.productTitle)
         setProductCode(item.productCode)
         setCurrentPrice(item.currentPrice)
@@ -167,6 +170,7 @@ export const ProductManage = () => {
         let res = await updateProductByIdService({
             id,
             productType,
+            subProductType,
             productTitle,
             productCode,
             currentPrice,
@@ -217,6 +221,29 @@ export const ProductManage = () => {
                             <option value={'keyChain'}>Móc khóa</option>
                             <option value={'watch'}>Đồng Hồ</option>
                         </select>
+
+                    </div>
+                    <div className="form-group col-2">
+                        <label >Loại sản phẩm chi tiết</label>
+                        {productType === 'clothes' && <select value={subProductType} className="form-select"
+                            onChange={(e) => setSubProductType(e.target.value)}  >
+                            <option value={'trousers'}>Quần</option>
+                            <option value={'shirt'}>Áo</option>
+                            <option value={'coat'}>Ao khóa</option>
+                        </select>}
+                        {productType === 'keyChain' && <select value={subProductType} className="form-select"
+                            onChange={(e) => setSubProductType(e.target.value)}  >
+                            <option value={'key-plastic'}>Móc khóa nhựa dẻo</option>
+                            <option value={'key-inox'}>Móc khóa inox</option>
+                            <option value={'key-mika'}>Móc khóa mika</option>
+                        </select>}
+                        {productType === 'watch' && <select value={subProductType} className="form-select"
+                            onChange={(e) => setSubProductType(e.target.value)}  >
+                            <option value={'w-metal'}>Đồng dây kim loại</option>
+                            <option value={'w-skin'}>Đồng hồ dây da</option>
+
+                        </select>}
+
                     </div>
                     <div className="form-group col-3 ">
                         <label>Tiêu đề sản phẩm</label>
@@ -232,32 +259,25 @@ export const ProductManage = () => {
                             type="text" className="form-control"
                         />
                     </div>
-                    <div style={{ width: '15%' }} className="form-group col-2 ">
+                    <div style={{ width: '12%' }} className="form-group col-2 ">
                         <label>Giá hiện tại</label>
                         <input value={currentPrice}
                             onChange={(e) => setCurrentPrice(e.target.value)}
                             type="number" className="form-control"
                         />
                     </div>
-                    <div style={{ width: '15%' }} className="form-group col-2 ">
+                    <div style={{ width: '12%' }} className="form-group col-2 ">
                         <label>Giá cũ</label>
                         <input value={oldPrice}
                             onChange={(e) => setOldPrice(e.target.value)}
                             type="number" className="form-control"
                         />
                     </div>
-                    <div style={{ width: '11%' }} className="form-group col-1 ">
-                        <label>Tình trạng</label>
-                        <select value={inStock} className="form-select"
-                            onChange={(e) => setInStock(e.target.value)}  >
-                            <option value={true}>Còn hàng</option>
-                            <option value={false}>Hết hàng</option>
-                        </select>
-                    </div>
+
 
                 </div>
                 <div className="row">
-                    <div className="form-group col-6 ">
+                    <div className="form-group col-5 ">
                         <label>Nhập 1 Mảng Size</label>
                         <input
                             value={arrSize}
@@ -265,13 +285,21 @@ export const ProductManage = () => {
                             onChange={(e) => setArrSize(e.target.value)}
                             type="text" className="form-control" />
                     </div>
-                    <div className="form-group col-6 ">
+                    <div className="form-group col-5 ">
                         <label>Nhập 1 Mảng Màu </label>
                         <input
                             value={arrColor}
                             placeholder="Ví dụ:   đỏ,xanh,vàng "
                             onChange={(e) => setArrColor(e.target.value)}
                             type="text" className="form-control" />
+                    </div>
+                    <div className="form-group col-2 ">
+                        <label>Tình trạng</label>
+                        <select value={inStock} className="form-select"
+                            onChange={(e) => setInStock(e.target.value)}  >
+                            <option value={true}>Còn hàng</option>
+                            <option value={false}>Hết hàng</option>
+                        </select>
                     </div>
                 </div>
                 <div className="form-group col-12 mt-3 ">

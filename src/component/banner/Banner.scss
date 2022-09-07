@@ -3,20 +3,36 @@
     margin: 0 auto;
 
 
-    .banner-item {
+    .banner-item1 {
         background-image: url('https://previews.123rf.com/images/goodstudio/goodstudio1909/goodstudio190900067/130218841-banner-template-for-fashion-show-with-top-models-wearing-trendy-seasonal-clothes-walking-along-runwa.jpg');
         background-repeat: no-repeat;
-        background-position: 50%;
+        background-position: 30%;
         background-size: cover;
-        width: 100%;
-        height: 100vh;
+        width: 90%;
+        height: 70vh;
+    }
+
+    .banner-item2 {
+        background-image: url('https://previews.123rf.com/images/rastudio/rastudio1903/rastudio190300190/124734879-catwalk-male-models-display-clothes-on-runway-fashion-show-and-event-for-media-men-s-fashion-men-s-s.jpg');
+        background-repeat: no-repeat;
+        background-position: 30%;
+        background-size: cover;
+        width: 90%;
+        height: 70vh;
     }
 
     @media(max-width:480px) {
-        .banner-item {
+
+        .banner-item1,
+        .banner-item2 {
             background-size: contain;
             height: 24vh;
         }
+    }
+
+    .slick-prev,
+    .slick-next {
+        display: none !important;
     }
 
 }

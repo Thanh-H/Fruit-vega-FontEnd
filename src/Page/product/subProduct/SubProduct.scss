@@ -1,0 +1,186 @@
+.product-container {
+    width: 100%;
+    margin-bottom: 36px;
+
+    .product-top-content {
+        display: flex;
+        justify-content: space-between;
+        width: 92%;
+        margin: 24px auto 0;
+
+        .product-title {
+            font-size: 25px;
+            font-weight: 600;
+            cursor: pointer;
+
+            a {
+
+                text-decoration: none;
+                color: var(--bs-body-color);
+
+                &:hover {
+                    color: var(--main-color);
+                }
+            }
+
+        }
+
+        .product-sort {
+            outline: none;
+            padding: 0 8px;
+        }
+    }
+
+
+
+    .product-item-container {
+
+        width: 92%;
+        margin: 0 auto;
+
+        .product-item-content {
+            border: 1px solid #ddd;
+            height: 350px;
+            margin-top: 30px;
+
+            &:hover {
+                box-shadow: 0 1px 2px 0 rgb(60 64 67 / 10%), 0 2px 6px 2px rgb(60 64 67 / 15%);
+
+            }
+
+
+            .content-top {
+                margin-top: 5%;
+                position: relative;
+                background-repeat: no-repeat;
+                background-size: cover;
+                height: 245px;
+                width: 100%;
+                background-position: 50%;
+                cursor: pointer;
+
+                &:hover {
+                    transform: translateY(-5%);
+                    transition: transform linear 0.4s;
+
+                }
+
+                .sale {
+                    top: 1%;
+                    left: 1%;
+                    position: absolute;
+                    background-image: url('https://theme.hstatic.net/1000096703/1000836887/14/bg-saleoff.png?v=70');
+                    background-position: 50%;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    width: 45px;
+                    height: 45px;
+                    color: white;
+                    line-height: 45px;
+                    text-align: center;
+
+                }
+            }
+
+            .content-center {
+                cursor: pointer;
+                text-align: center;
+                margin: 14px 0 2px 0;
+                font-size: 16px;
+                font-family: 'Quicksand', sans-serif;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+
+                &:hover {
+                    color: var(--main-color);
+                }
+            }
+
+            .content-footer {
+                .box-price {
+                    font-size: 14px;
+                    font-family: 'Quicksand', sans-serif;
+                    font-weight: 600;
+                    text-align: center;
+                }
+
+                .box-price-sale {
+                    font-family: 'Quicksand', sans-serif;
+                    text-align: center;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+
+                    .curent-price {
+                        font-weight: 700;
+                        margin-right: 2px;
+                        color: red;
+                        font-size: 14px;
+                    }
+
+                    .old-price {
+                        margin-left: 2px;
+                        font-size: 13px;
+                    }
+                }
+
+                .add-to-cart {
+                    text-align: center;
+                    background-color: var(--main-color);
+                    color: white;
+                    cursor: pointer;
+                    height: 36px;
+                    font-size: 16px;
+                    line-height: 36px;
+                    width: 80%;
+                    margin: 0 auto;
+
+                }
+
+
+            }
+
+        }
+    }
+
+
+
+
+}
+
+@media (max-width: 480px) {
+    .product-container {
+        .product-item-content {
+            height: 262px !important;
+
+            .sale {
+                top: 0 !important;
+                left: 0 !important;
+                width: 32px !important;
+                height: 32px !important;
+                color: white;
+                line-height: 32px !important;
+                text-align: center;
+                font-size: 14px;
+
+            }
+
+            .content-top {
+                height: 180px !important;
+            }
+        }
+    }
+}
+
+@media (max-width: 768) {
+    .product-container {
+        .product-item-content {
+            height: 300px !important;
+
+            .content-top {
+                height: 235 !important;
+            }
+        }
+    }
+}
