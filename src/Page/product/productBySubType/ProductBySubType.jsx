@@ -41,7 +41,6 @@ export const ProductBySubType = () => {
         <div className='product-by-type-container'>
             <Header />
             <SubProducts
-                limitItem={30}
                 subProductType={`${subProductType}`}
                 nameProduct={`${nameProduct}`}
             />

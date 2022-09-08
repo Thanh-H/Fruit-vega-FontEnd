@@ -8,12 +8,14 @@ import { useParams } from 'react-router-dom'
 import { getAllProductService } from '../../service/userService'
 import { Header } from '../header/Header';
 import { Footer } from '../footer/Footer';
+import ReactPaginate from 'react-paginate'
+import { SkipNextOutlined, SkipPreviousOutlined } from '@material-ui/icons'
 
 export const PageResultSearch = (props) => {
     let { searchWord } = useParams()
     let [filterProduct, setFilterProduct] = useState()
 
-    let limitItem = props.limitItem
+    let limitItemFromParent = props.limitItem
     let productType = props.productType
 
     useEffect(() => {
@@ -29,7 +31,11 @@ export const PageResultSearch = (props) => {
                 if (searchWord === '') {
                     setFilterProduct([])
                 }
-                else { setFilterProduct(newFilter) }
+
+                else {
+                    setFilterProduct(newFilter)
+                    setPageCount(Math.ceil(newFilter.length / productsPerPage))
+                }
             }
         }
         getAllProduct()
@@ -73,6 +79,21 @@ export const PageResultSearch = (props) => {
         navigate(`/products/${productType}`)
     }
 
+    // phân trang
+    let [pageCount, setPageCount] = useState()
+    let [pageNumber, setPageNumber] = useState(0);
+    let productsPerPage = 12;
+
+    let fromItem = 0
+    let limitItem = 0
+    fromItem = !limitItemFromParent ? pageNumber * productsPerPage : 0
+    limitItem = !limitItemFromParent ? fromItem + productsPerPage : limitItemFromParent
+
+    let changePage = ({ selected }) => {
+        setPageNumber(selected)
+        window.scrollTo(0, 0)
+    }
+
     return (
         <>
             <Header />
@@ -84,7 +105,7 @@ export const PageResultSearch = (props) => {
                     </h1>
                 </div>
                 <div className="product-item-container row">
-                    {filterProduct && filterProduct.length > 0 && filterProduct.slice(0, limitItem).map((item, index) => {
+                    {filterProduct && filterProduct.length > 0 && filterProduct.slice(fromItem, limitItem).map((item, index) => {
                         return (<div key={index} className="product-item-content col-6 col-xl-3 col-md-4">
                             <div onClick={() => HandleRedirec(item)}
                                 style={{ backgroundImage: `url(${item.arrImage[0]?.image})` }} className="content-top">
@@ -125,6 +146,17 @@ export const PageResultSearch = (props) => {
                         )
                     })}
                 </div>
+                {!limitItemFromParent && <ReactPaginate
+                    previousLabel={<SkipPreviousOutlined />}
+                    nextLabel={<SkipNextOutlined />}
+                    pageCount={pageCount}
+                    onPageChange={changePage}
+                    containerClassName={"paginationBttns"}
+                    previousLinkClassName={"previousBttn"}
+                    nextLinkClassName={"nextBttn"}
+                    disabledClassName={"paginationDisabled"}
+                    activeClassName={"paginationActive"}
+                />}
             </div>
             <Footer />
         </>
