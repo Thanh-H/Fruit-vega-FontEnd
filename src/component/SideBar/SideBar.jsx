@@ -11,6 +11,7 @@ import { Cart } from './cart/Cart'
 import { MenuSearch } from './search/MenuSearch'
 
 
+
 export const SideBar = (props) => {
     let dispatch = useDispatch()
     let navigate = useNavigate()
@@ -64,7 +65,7 @@ export const SideBar = (props) => {
                 <div className={(openMenuBar || openCart || openSearch) ? " sidebar-container-content sidebar-container-content-close" : "sidebar-container-content"}>
                     {openMenuBar === true && <div className="menu-container">
                         <div className="top-content">
-                            {userName ? <div className='hi-user'>Wellcome {userName} !</div>
+                            {userName ? <div className='hi-user'>Xin chào, {userName} !</div>
                                 : <div onClick={() => handleGoToLoginPage()} className="mobile">
                                     <FontAwesomeIcon icon={faUser}></FontAwesomeIcon>
                                     &nbsp; Đăng nhập

@@ -1,24 +1,23 @@
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useEffect, useState } from 'react'
+import NumberFormat from 'react-number-format'
+import { useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import Slider from "react-slick"
+import { toast } from 'react-toastify'
 import "slick-carousel/slick/slick-theme.css"
 import "slick-carousel/slick/slick.css"
 import { Footer } from '../../../../component/footer/Footer'
 import { Header } from '../../../../component/header/Header'
+import { createProductInCart } from '../../../../redux/action'
 import { getProductByIdService } from '../../../../service/userService'
 import { Products } from '../Products'
 import './DetailProduct.scss'
-import NumberFormat from 'react-number-format';
-import { useDispatch } from 'react-redux'
-import { createProductInCart } from '../../../../redux/action'
-import { toast } from 'react-toastify'
-import { SideBar } from '../../../../component/SideBar/SideBar'
-
 
 
 export const DetailProduct = () => {
+
     let productType = (useParams().type)
     let { id } = useParams()
     let [detailProduct, setDetailProduct] = useState()
@@ -42,11 +41,12 @@ export const DetailProduct = () => {
             let res = await getProductByIdService(id)
             if (res && res.errCode === 0) {
                 setDetailProduct(res.data)
+                document.title = `${res.data?.productTitle}`
             }
         }
         getDetailProduct()
         document.title = `${detailProduct?.productTitle}`
-    }, [id, detailProduct])
+    }, [id])
 
     let buildDataProductForCart = () => {
         let dataProductForCart = {

@@ -58,6 +58,9 @@ export const MenuSearch = (props) => {
                     setFilterProduct([])
                 }
                 else { setFilterProduct(newFilter) }
+                if (newFilter != []) {
+                    setIsOpenModalSearch(true)
+                }
             }
         }
         getAllProduct()
@@ -97,7 +100,6 @@ export const MenuSearch = (props) => {
             <div className="center-content">
                 <input className="center-content-top"
                     onChange={(e) => setSearchword(e.target.value)}
-                    onFocus={() => setIsOpenModalSearch(true)}
                     onKeyDown={(e) => {
                         if (e.key === 'Enter' || e.keycode === 13) {
                             navigate(`/search/${searchWord}`)

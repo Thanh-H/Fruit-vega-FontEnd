@@ -1,16 +1,14 @@
-import './Header.scss'
-// import logo from '../../assets/logo.PNG'
-import React, { useState, useEffect, useRef } from 'react'
 import { faUser } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBagShopping, faBars, faCartShopping, faMagnifyingGlass, faPager } from '@fortawesome/free-solid-svg-icons'
-import { Link, useNavigate } from 'react-router-dom'
-import { SideBar } from '../SideBar/SideBar'
-import { useDispatch, useSelector } from 'react-redux'
-import logo from './logo.svg'
-import { NavSearch } from '../navSearch/NavSearch'
+import { DashboardOutlined, LocalMallOutlined, MenuOutlined, Search } from '@material-ui/icons'
+import React, { useEffect, useRef, useState } from 'react'
+import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import { getAllProductService } from '../../service/userService'
-import { Search } from '@material-ui/icons'
+import { NavSearch } from '../navSearch/NavSearch'
+import { SideBar } from '../SideBar/SideBar'
+import './Header.scss'
+import logo from './logo.svg'
 
 
 
@@ -99,6 +97,9 @@ export const Header = (props) => {
                     setFilterProduct([])
                 }
                 else { setFilterProduct(newFilter) }
+                if (newFilter != []) {
+                    setIsOpenModalSearch(true)
+                }
             }
         }
         getAllProduct()
@@ -138,7 +139,6 @@ export const Header = (props) => {
                     <div className='center-content form-group'>
                         <input className='search-center' type="text"
                             onChange={(e) => setSearchword(e.target.value)}
-                            onFocus={() => { setIsOpenModalSearch(true) }}
                             onKeyDown={(e) => {
                                 if (e.key === 'Enter' || e.keycode === 13) {
                                     navigate(`/search/${searchWord}`)
@@ -155,25 +155,25 @@ export const Header = (props) => {
                         </div>
                     </div>
                     <div className='right-content'>
-                        {isAdmin ? <div className="admin-page"
-                            onClick={() => handleOpenMenu('admin')}>
-                            <FontAwesomeIcon icon={faPager}></FontAwesomeIcon>
-                            &nbsp;admin
-                        </div> : ''}
-                        {userName ? <div className='user-logged-in'>hi {userName} ! </div>
+                        {userName ? <div className='user-logged-in'>xin chào, <span>{userName} !</span>  </div>
                             :
                             <div className="user-login"
                                 onClick={() => handleGoToLoginPage()}>
                                 <FontAwesomeIcon icon={faUser}></FontAwesomeIcon>
                             </div>}
 
+                        {isAdmin ? <div className="admin-page"
+                            onClick={() => handleOpenMenu('admin')}>
+                            <i>   <DashboardOutlined /></i>
+                        </div> : ''}
+
                         <div className="search"
                             onClick={() => handleOpenMenu('search')}>
-                            <Search />
+                            <i>  <Search /></i>
                         </div>
                         <div className="cart"
                             onClick={() => handleOpenMenu('cart')}>
-                            <FontAwesomeIcon icon={faBagShopping}></FontAwesomeIcon>
+                            <i>  < LocalMallOutlined /></i>
                             {quantity > 0 ? <div className="notification-quantity">
                                 {quantity < 10 ? quantity : '9+'}
                             </div> : ''}
@@ -181,7 +181,7 @@ export const Header = (props) => {
                         <div className="menu"
                             onClick={() => handleOpenMenu('menu')}
                         >
-                            <FontAwesomeIcon icon={faBars}></FontAwesomeIcon>
+                            <i> <MenuOutlined /></i>
                         </div>
                     </div>
                 </div>
