@@ -44,9 +44,13 @@ const updateProductByIdService = (data) => {
 const getProductByIdService = (id) => {
     return axios.get(`/api/get-product-by-id/${id}`)
 }
+const createANewOrder = (data) => {
+    return axios.post('/api/create-new-order', data)
+}
+
 
 export {
     handleLoginService, handleRegisterService, handleLogOutService, getAllUserService, deleteUserService,
     updateUserService, createANewProduct, getAllProductService, deleteProductService, updateProductByIdService,
-    getProductByIdService
+    getProductByIdService, createANewOrder
 }
