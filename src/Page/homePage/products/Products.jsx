@@ -22,11 +22,22 @@ export const Products = (props) => {
         let getAllProduct = async () => {
             let res = await getAllProductService()
             if (res && res.errCode === 0) {
-                let allProducts = res.data
-                let productS = allProducts.filter((item, index) => {
-                    if (item.productType === productType) return item
-                })
+                let arrProducts = res.data
+                let productS = []
+                if (productType === 'all' && arrProducts) {
+                    productS = arrProducts.filter((item, index) => {
+                        return item
+                    })
+                    setAllProducts(productS.reverse())
+                }
+
+                else {
+                    productS = arrProducts.filter((item, index) => {
+                        if (item.productType === productType) return item
+                    })
+                }
                 let allProductsCoppy = [...productS.reverse()]
+
                 if (sortBy === 'outstanding') {
                     setAllProducts(allProductsCoppy)
                     setPageCount(Math.ceil(allProductsCoppy.length / productsPerPage))

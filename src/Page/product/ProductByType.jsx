@@ -9,10 +9,12 @@ import { useState } from 'react'
 export const ProductByType = () => {
     let { productType } = useParams()
 
-
-
     let [nameProduct, setNameProduct] = useState()
     useEffect(() => {
+        if (productType === 'all') {
+            setNameProduct('Tất cả')
+        }
+
         if (productType === 'keyChain') {
             setNameProduct('Móc khóa')
 
@@ -33,7 +35,6 @@ export const ProductByType = () => {
         <div className='product-by-type-container'>
             <Header />
             <Products
-
                 productType={`${productType}`}
                 nameProduct={`${nameProduct}`}
             />

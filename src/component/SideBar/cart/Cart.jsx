@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './Cart.scss'
 import { useSelector } from 'react-redux'
 import NumberFormat from 'react-number-format';
-import { deleteProductInCart } from '../../../redux/action'
+import { deleteProductInCart, handleResetCart } from '../../../redux/action'
 import { useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
@@ -13,6 +13,7 @@ import { useEffect } from 'react';
 import { useRef } from 'react';
 import { createANewOrder } from '../../../service/userService'
 import { toast } from 'react-toastify';
+import { IsLoading } from '../../isLoading/IsLoading';
 
 
 
@@ -21,7 +22,7 @@ export const Cart = (props) => {
     let dispatch = useDispatch()
     let navigate = useNavigate()
 
-    let { handleCloseSideBarFromParent } = props
+    let { handleCloseSideBarFromParent, handleOpenIsLoading } = props
 
     let [isShowFormOrder, setIsShowFromOrder] = useState(false)
     let [isShowOderInfor, setIsShowOrtherInfor] = useState(true)
@@ -97,26 +98,59 @@ export const Cart = (props) => {
     let [phoneNumber, setPhoneNumber] = useState()
     let [note, setNote] = useState()
 
+
     let handleOrder = async () => {
-        let DataOder = {
-            arrProduct: arrProduct,
-            nameCustomer: nameCustomer,
-            emailCustomer: emailCustomer,
-            phoneNumber: phoneNumber,
-            quantity: quantity,
-            total: total,
-            address: `${subAddress}, ${selectedvillage.value}, ${selectedDistrict.value}, ${selectedProvince.value}`,
-            note: note
+        let isvalid = true
+        if (!nameCustomer) {
+            isvalid = false
+            toast.warning('Vui lòng nhập họ và tên')
         }
-        console.log(DataOder)
-        let res = await createANewOrder(DataOder)
-        if (res && res.errCode === 0) {
-            toast.success('Chúc mừng bạn đã đặt hàng thành công, Vui lòng đợi 1 cuộc điện thoại xác nhận từ cửa hàng chúng tôi,xin cảm ơn')
-            navigate('/')
+        if (!emailCustomer) {
+            isvalid = false
+            toast.warning('Vui lòng nhập email')
         }
-        else {
-            toast.error('Lỗi rồi, vui lòng thử lại')
+        if (!phoneNumber) {
+            isvalid = false
+            toast.warning('Vui lòng nhập Số điện thoại')
         }
+        if (!subAddress || !selectedvillage.value || !selectedDistrict.value || !selectedProvince.value) {
+            isvalid = false
+            toast.warning('Vui lòng chọn địa chỉ')
+        }
+        if (isvalid === true) {
+            handleOpenIsLoading(true)
+            let DataOder = {
+                arrProduct: arrProduct,
+                nameCustomer: nameCustomer,
+                emailCustomer: emailCustomer,
+                phoneNumber: phoneNumber,
+                quantity: quantity,
+                total: total,
+                address: `${subAddress}, ${selectedvillage.value}, ${selectedDistrict.value}, ${selectedProvince.value}`,
+                note: note
+            }
+
+            try {
+                let res = await createANewOrder(DataOder)
+                if (res && res.errCode === 0) {
+                    toast.success('Chúc mừng bạn đã đặt hàng thành công, Vui lòng đợi 1 cuộc điện thoại xác nhận từ cửa hàng chúng tôi,xin cảm ơn')
+                    handleResetCart(dispatch)
+                    handleCloseSideBarFromParent('close')
+                    handleOpenIsLoading(false)
+                }
+                else {
+                    toast.error('Lỗi rồi, vui lòng thử lại')
+                    handleOpenIsLoading(false)
+                }
+            } catch (error) {
+                toast.error('Lỗi rồi, vui lòng thử lại')
+                handleOpenIsLoading(false)
+                return (error)
+            }
+        }
+
+
+
 
     }
 
@@ -189,7 +223,9 @@ export const Cart = (props) => {
 
 
     return (
+
         <div className="cart-container">
+
             <div className="top-content">
                 <div className='cart-block'>
                     <span className='cart-title'>{!isShowFormOrder ? ' Giỏ hàng' : 'Thanh toán'}</span>
@@ -252,5 +288,6 @@ export const Cart = (props) => {
             {disPlayFormOrder}
 
         </div >
+
     )
 }

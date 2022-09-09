@@ -1,13 +1,23 @@
 import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { Footer } from '../../component/footer/Footer'
 import { loginUser } from "../../redux/action"
-// import './Login.scss'
+import './Register.scss'
+import logo from '../../assets/LOGO.svg'
+import { IsLoading } from '../../component/isLoading/IsLoading'
+import { toast } from 'react-toastify'
+
 
 export const Login = () => {
+    useEffect(() => {
+        document.title = 'T-shop Đăng nhập'
+    }, [])
+
+    let isFetching = useSelector((state) => state.auth.login?.isFetching)
+
     let [email, setEmai] = useState('')
     let [password, setPassword] = useState('')
     let [showPassword, setShowPassword] = useState(false)
@@ -16,16 +26,15 @@ export const Login = () => {
 
     let handleLogin = () => {
         var isValid = true
-        let arr = [email, password]
-        for (let i = 0; i < arr.length; i++) {
-
-            if (arr[i] === '') {
-                alert('missing parameter')
-                isValid = false
-                break;
-            }
-
+        if (!email) {
+            toast.warning('Vui lòng nhập địa chỉ email')
+            isValid = false
         }
+        if (!password) {
+            toast.warning('Vui lòng nhập mật khẩu')
+            isValid = false
+        }
+
         if (isValid === true) { loginUser(email, password, dispatch, navigate) }
     }
 
@@ -47,11 +56,13 @@ export const Login = () => {
     }
     return (
         <>
+
             <div className='login-container  '>
+                {isFetching && <IsLoading />}
                 <div className="content-container row  container">
                     <div className="comtent-left col-6">
-                        <h1 onClick={() => handleGoToHomePage()} className="store-title">ICING</h1>
-                        <p>Phụ Kiện thời trang</p>
+                        <img src={logo} onClick={() => handleGoToHomePage()} className="store-title" />
+                        <p>Đăng nhập để nhận nhiều mã giảm giá ^^</p>
                     </div>
                     <div className="content-right col-6 ">
                         <div className="form-container">

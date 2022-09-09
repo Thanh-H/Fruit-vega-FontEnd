@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom'
 import { logOutUser } from '../../redux/action'
 import { Cart } from './cart/Cart'
 import { MenuSearch } from './search/MenuSearch'
+import { IsLoading } from '../isLoading/IsLoading'
 
 
 
@@ -55,15 +56,26 @@ export const SideBar = (props) => {
     let handleGoToLoginPage = () => {
         navigate('/login')
     }
+    // open Isoading
+    let [openIsLoading, setOpenIsLoading] = useState(false)
+    let handleOpenIsLoading = (value) => {
+        setOpenIsLoading(value)
+    }
+    console.log(openIsLoading)
 
     return (
 
         <>
+            {openIsLoading && <IsLoading
 
+            />}
             <div className="sidebar-container">
+
                 <div onClick={() => handleCloseSideBar()} className={(openMenuBar || openCart || openSearch) ? "site-overlay" : ''}></div>
                 <div className={(openMenuBar || openCart || openSearch) ? " sidebar-container-content sidebar-container-content-close" : "sidebar-container-content"}>
+
                     {openMenuBar === true && <div className="menu-container">
+
                         <div className="top-content">
                             {userName ? <div className='hi-user'>Xin chào, {userName} !</div>
                                 : <div onClick={() => handleGoToLoginPage()} className="mobile">
@@ -98,8 +110,8 @@ export const SideBar = (props) => {
                                         <li onClick={() => navigate(`/products/sub-product/w-skin`)}>Đồng hồ dây da</li>
                                     </> : ''}
                             </ul>
-                            <ul> <span>All</span> </ul>
-                            <ul> <span>SALE</span> </ul>
+                            <ul> <span onClick={() => navigate(`/products/all`)}>All</span> </ul>
+
                         </div>
                         <div className="bottom-content">
                             {userName && <div onClick={() => handleLogOut()}> Đăng xuất  <FontAwesomeIcon icon={faRightFromBracket} />  </div>}
@@ -107,7 +119,9 @@ export const SideBar = (props) => {
                     </div>}
 
 
-                    {openCart === true && <Cart handleCloseSideBarFromParent={handleCloseSideBar} />}
+                    {openCart === true && <Cart
+                        handleOpenIsLoading={handleOpenIsLoading}
+                        handleCloseSideBarFromParent={handleCloseSideBar} />}
                     {openSearch === true && <MenuSearch handleCloseSideBarFromParent={handleCloseSideBar} />}
                 </div>
             </div>

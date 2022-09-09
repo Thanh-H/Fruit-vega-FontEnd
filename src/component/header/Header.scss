@@ -39,7 +39,7 @@
                 align-items: center;
 
                 .header-logo {
-                    transform: scale(0.7, 0.4);
+                    transform: scale(0.8, 0.8);
                     height: 100%;
                     width: 60%;
                     cursor: pointer;
@@ -118,16 +118,17 @@
                 }
 
                 .user-login {
-                    font-size: 18px;
-                    border: 1px solid black;
-                    padding: 0px 6px;
+                    font-size: 16px;
+                    border: 2px solid black;
+                    padding: 0px 5px;
                     border-radius: 50%;
                     cursor: pointer;
                     margin-right: 20px;
 
                     &:hover {
                         color: #eb5b5c;
-                        border: 1px solid #eb5b5c;
+                        border: 2px solid #eb5b5c;
+
                     }
 
                 }
@@ -149,6 +150,7 @@
                     }
 
                     svg {
+                        margin-bottom: 4px;
                         font-size: 28px;
                     }
                 }

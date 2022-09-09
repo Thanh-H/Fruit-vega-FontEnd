@@ -6,9 +6,13 @@ import { Footer } from '../../component/footer/Footer'
 import { registerUSer } from "../../redux/action"
 import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-
+import logo from '../../assets/LOGO.svg'
+import { useEffect } from 'react'
 
 export const Register = () => {
+    useEffect(() => {
+        document.title = 'T-shop Đăng kí'
+    }, [])
     let [userName, setUserName] = useState('')
     let [email, setEmai] = useState('')
     let [password, setPassword] = useState('')
@@ -47,8 +51,8 @@ export const Register = () => {
             <div className='login-container  '>
                 <div className="content-container row  container">
                     <div className="comtent-left col-6">
-                        <h1 onClick={() => handleGoToHomePage()} className="store-title">ICING</h1>
-                        <p>Phụ Kiện thời trang</p>
+                        <img src={logo} onClick={() => handleGoToHomePage()} className="store-title" />
+                        <p>Đăng kí để nhận nhiều mã giảm giá </p>
                     </div>
                     <div className="content-right col-6 ">
                         <div className="form-container">

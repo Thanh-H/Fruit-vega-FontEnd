@@ -29,7 +29,7 @@ const authSlice = createSlice({
         loginFailed: (state) => {
             state.login.isFetching = false;
             state.login.error = true;
-            toast.error('Bạn nhập sai email hoặc mật khẩu, vui lòng hãy thử lại!')
+
         },
         registerStart: (state) => {
             state.register.isFetching = true;

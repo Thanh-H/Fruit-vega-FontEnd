@@ -14,7 +14,6 @@ import { useSelector } from 'react-redux'
 
 export const OrderManage = () => {
     let accessToken = useSelector((state => state.auth.login.userInfor?.accessToken))
-    console.log(accessToken)
     let [count, setCount] = useState(1)
     //Modal see Detail ORder
     const [modal, setModal] = useState(false);
@@ -123,9 +122,6 @@ export const OrderManage = () => {
     }
 
     let handleCRUD = () => {
-        console.log('check name', nameHandle)
-        console.log('check id', idWillBeAction)
-
         if (nameHandle === 'confirm') { handleConfirm(idWillBeAction) }
         if (nameHandle === 'cancel') { handleCancel(idWillBeAction) }
         if (nameHandle === 'delete') { handleDelete(idWillBeAction) }
@@ -277,7 +273,7 @@ export const OrderManage = () => {
 
             </div>
             <div className='modal-crud-container'>
-                <Modal isOpen={modalCRUD} toggleCRUD={toggleCRUD} size='sm' fullscreen='sm' >
+                <Modal isOpen={modalCRUD} toggleCRUD={toggleCRUD} size='sm' fullscreen='sm' centered={true} >
                     <ModalBody>
                         Bạn chắc chắn muốn {nameHandle} đơn hàng?
                     </ModalBody>

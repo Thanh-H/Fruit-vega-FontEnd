@@ -14,7 +14,7 @@ import {
 } from "./userSlice";
 import {
   createCartSuccess, createCartFailed, deleteCartSuccess,
-  deleteCartFailed
+  deleteCartFailed, resetCart
 } from './productSlice'
 import { toast } from 'react-toastify';
 import { useSelector } from 'react-redux'
@@ -23,9 +23,16 @@ export const loginUser = async (email, password, dispatch, navigate) => {
   dispatch(loginStart());
   try {
     let res = await handleLoginService(email, password);
-    dispatch(loginSuccess(res.data));
-    navigate("/");
+    if (res && res.errCode === 0) {
+      dispatch(loginSuccess(res.data));
+      navigate("/");
+    }
+    if (res && res.errCode !== 0) {
+      toast.error(`${res.errMessage}`)
+      dispatch(loginFailed());
+    }
   } catch (err) {
+    toast.error('Mất kết nối với máy chủ!')
     dispatch(loginFailed());
   }
 };
@@ -116,4 +123,9 @@ export const deleteProductInCart = (index, dispatch) => {
   } catch (error) {
     dispatch(deleteCartFailed())
   }
+}
+
+export const handleResetCart = (dispatch) => {
+  dispatch(resetCart())
+
 }

@@ -8,7 +8,7 @@ import { getAllProductService } from '../../service/userService'
 import { NavSearch } from '../navSearch/NavSearch'
 import { SideBar } from '../SideBar/SideBar'
 import './Header.scss'
-import logo from './logo.svg'
+import logo from '../../assets/LOGO.svg'
 
 
 

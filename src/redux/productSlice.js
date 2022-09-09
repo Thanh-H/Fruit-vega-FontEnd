@@ -55,6 +55,14 @@ const productSlice = createSlice({
             state.cart.error = true;
         },
 
+        //reset CART
+        resetCart: (state, action) => {
+            state.cart.cartView = []
+            state.cart.error = false
+            state.cart.quantity = 0
+            state.cart.total = 0
+        }
+
 
     }
 })
@@ -63,7 +71,7 @@ export const {
     createCartSuccess,
     createCartFailed,
     deleteCartSuccess,
-    deleteCartFailed
+    deleteCartFailed, resetCart
 } = productSlice.actions;
 
 export default productSlice.reducer;

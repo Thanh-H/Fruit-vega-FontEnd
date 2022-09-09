@@ -49,13 +49,17 @@ export const DetailProduct = () => {
     }, [id])
 
     let buildDataProductForCart = () => {
+        let description = `${chooseSize}/${chooseColor}`
+        if (!chooseSize) { description = `${chooseColor}` }
+        if (!chooseColor) { description = `${chooseSize}` }
+        if (!chooseColor && !chooseSize) { description = `` }
         let dataProductForCart = {
             id: detailProduct._id,
             productType: detailProduct.productType,
             productTitle: detailProduct.productTitle,
             image: detailProduct.arrImage[0].image,
             productCode: detailProduct.productCode,
-            description: `${chooseSize}/${chooseColor}`,
+            description: description,
             price: detailProduct.currentPrice,
             quantity: quantity
 
@@ -72,10 +76,16 @@ export const DetailProduct = () => {
             if (!chooseColor) {
                 toast.error('Vui lòng chọn màu')
             }
-            if (chooseColor && chooseSize) { createProductInCart(data, dispatch) }
-        } else { createProductInCart(data, dispatch) }
+            if (chooseColor && chooseSize) {
+                createProductInCart(data, dispatch)
+                setOpenCart(!openCart)
+            }
+        } else {
+            createProductInCart(data, dispatch)
+            setOpenCart(!openCart)
+        }
 
-        setOpenCart(!openCart)
+
 
     }
     let closeCart = () => {
