@@ -37,6 +37,7 @@ export const ProductBySubType = () => {
             setNameProduct('Móc khóa mika')
         }
     }, [subProductType])
+    document.title = `${nameProduct}`
     return (
         <div className='product-by-type-container'>
             <Header />

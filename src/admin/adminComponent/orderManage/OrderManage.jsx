@@ -10,9 +10,11 @@ import moment from 'moment';
 import { confirmOrder } from '../../../service/userService'
 import { toast } from 'react-toastify'
 import Select from 'react-select';
-
+import { useSelector } from 'react-redux'
 
 export const OrderManage = () => {
+    let accessToken = useSelector((state => state.auth.login.userInfor?.accessToken))
+    console.log(accessToken)
     let [count, setCount] = useState(1)
     //Modal see Detail ORder
     const [modal, setModal] = useState(false);
@@ -81,7 +83,7 @@ export const OrderManage = () => {
 
     let handleConfirm = async (id) => {
         setCount(++count)
-        let res = await confirmOrder({ id: id })
+        let res = await confirmOrder(id, accessToken)
         if (res && res.errCode === 0) {
             toast.success('confirm succeed!')
         }
@@ -92,7 +94,7 @@ export const OrderManage = () => {
 
     let handleCancel = async (id) => {
         setCount(++count)
-        let res = await cancelOrder({ id: id })
+        let res = await cancelOrder(id, accessToken)
         if (res && res.errCode === 0) {
             toast.success('cancel order succeed!')
         }
@@ -101,9 +103,10 @@ export const OrderManage = () => {
         }
     }
 
+
     let handleDelete = async (id) => {
         setCount(++count)
-        let res = await deleteOrder(id)
+        let res = await deleteOrder(id, accessToken)
         if (res && res.errCode === 0) {
             toast.success('delete order succeed!')
         }
@@ -111,18 +114,24 @@ export const OrderManage = () => {
             toast.error('delete order failed')
         }
     }
-
+    let [idWillBeAction, setIdWillBeAction] = useState()
     let [nameHandle, setNameHandle] = useState('')
-    let openModalCRUD = (name) => {
+    let openModalCRUD = (id, name) => {
         toggleCRUD()
         setNameHandle(name)
+        setIdWillBeAction(id)
     }
-    let handleCRUD = (id) => {
-        if (nameHandle === 'confirm') { handleConfirm(id) }
-        if (nameHandle === 'cancel') { handleCancel(id) }
-        if (nameHandle === 'delete') { handleDelete(id) }
+
+    let handleCRUD = () => {
+        console.log('check name', nameHandle)
+        console.log('check id', idWillBeAction)
+
+        if (nameHandle === 'confirm') { handleConfirm(idWillBeAction) }
+        if (nameHandle === 'cancel') { handleCancel(idWillBeAction) }
+        if (nameHandle === 'delete') { handleDelete(idWillBeAction) }
 
     }
+
     //CRUD ORDER END.
 
 
@@ -171,30 +180,13 @@ export const OrderManage = () => {
                             </td>
                             <td> <button
                                 onClick={() => { handleOpenToggle(item) }} className='btn btn-info'>Details..</button> </td>
-                            <td> <button onClick={() => openModalCRUD('confirm')} className='btn btn-primary' > <Check /> </button> </td>
+                            <td> {item.status === 'pending' && <button onClick={() => openModalCRUD(item._id, 'confirm')} className='btn btn-primary' > <Check /> </button>} </td>
                             <td> <button className='btn btn-warning' > <Edit /> </button> </td>
-                            <td> <button onClick={() => openModalCRUD('cancel')} className='btn btn-secondary'> <CancelOutlined /> </button> </td>
-                            <td> <button onClick={() => openModalCRUD('delete')} className='btn btn-danger'> <DeleteOutline /> </button> </td>
-                            <td>
-                                <div className='modal-crud-container'>
-                                    <Modal isOpen={modalCRUD} toggleCRUD={toggleCRUD} size='sm' fullscreen='sm' >
-                                        <ModalBody>
-                                            Bạn chắc chắn muốn {nameHandle} đơn hàng?
-                                        </ModalBody>
-                                        <ModalFooter>
-                                            <Button color="primary" onClick={() => {
-                                                handleCRUD(item._id)
-                                                toggleCRUD()
-                                            }}>
-                                                Xác nhận
-                                            </Button>{' '}
-                                            <Button color="secondary" onClick={toggleCRUD}>
-                                                Cancel
-                                            </Button>
-                                        </ModalFooter>
-                                    </Modal>
-                                </div>
-                            </td>
+                            <td> {item.status !== 'cancelled' && <button onClick={() => openModalCRUD(item._id, 'cancel')} className='btn btn-secondary'> <CancelOutlined /> </button>} </td>
+                            <td> <button onClick={() => openModalCRUD(item._id, 'delete')} className='btn btn-danger'> <DeleteOutline /> </button> </td>
+
+
+
 
                         </tr>)
                     })
@@ -283,6 +275,24 @@ export const OrderManage = () => {
                 </Modal>
 
 
+            </div>
+            <div className='modal-crud-container'>
+                <Modal isOpen={modalCRUD} toggleCRUD={toggleCRUD} size='sm' fullscreen='sm' >
+                    <ModalBody>
+                        Bạn chắc chắn muốn {nameHandle} đơn hàng?
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button color="primary" onClick={() => {
+                            handleCRUD()
+                            toggleCRUD()
+                        }}>
+                            Xác nhận
+                        </Button>{' '}
+                        <Button color="secondary" onClick={toggleCRUD}>
+                            Cancel
+                        </Button>
+                    </ModalFooter>
+                </Modal>
             </div>
 
         </div>

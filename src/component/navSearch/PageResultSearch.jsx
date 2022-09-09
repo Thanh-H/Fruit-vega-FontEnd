@@ -20,6 +20,7 @@ export const PageResultSearch = (props) => {
 
     useEffect(() => {
         document.title = `Tìm "${searchWord}"`
+        window.scrollTo(0, 0)
         let getAllProduct = async () => {
             let res = await getAllProductService()
             if (res && res.errCode === 0) {

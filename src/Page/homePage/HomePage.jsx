@@ -9,9 +9,7 @@ import { Footer } from '../../component/footer/Footer'
 // import { Watch } from './products/watch/Watch'
 export const HomePage = () => {
 
-    useEffect(() => {
-        document.title = ('Chào mừng bạn đến trang web của thanh')
-    }, [])
+
     return (
         <div className="homePage-container">
             <Header />

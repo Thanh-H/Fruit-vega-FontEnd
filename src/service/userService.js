@@ -25,20 +25,20 @@ const updateUserService = (data) => {
     return axios.put('/api/update-userByAdmin/', data)
 }
 
-const createANewProduct = (data) => {
-    return axios.post('/api/create-new-product', data)
+const createANewProduct = (data, accessToken) => {
+    return axios.post('/api/create-new-product', { data, accessToken: `Bearer ${accessToken}` })
 }
 
 const getAllProductService = () => {
     return axios.get('/api/get-all-products')
 }
 
-const deleteProductService = (id) => {
-    return axios.delete('/api/delete-product/' + id)
+const deleteProductService = (id, accessToken) => {
+    return axios.delete('/api/delete-product/' + id, { data: { accessToken: `Bearer ${accessToken}` } })
 }
 
-const updateProductByIdService = (data) => {
-    return axios.put('/api/update-product-by-id/', data)
+const updateProductByIdService = (newData, accessToken) => {
+    return axios.put('/api/update-product-by-id/', { data: newData, accessToken: `Bearer ${accessToken}` })
 }
 
 const getProductByIdService = (id) => {
@@ -52,17 +52,17 @@ const getAllOrdersService = () => {
     return axios.get('/api/get-all-orders')
 }
 
-const confirmOrder = (id) => {
-    return axios.put('/api/confirm-order', id)
+const confirmOrder = (id, accessToken) => {
+    return axios.put('/api/confirm-order', { id: id, accessToken: `Bearer ${accessToken}` })
 
 }
-const cancelOrder = (id) => {
-    return axios.put('/api/cancel-order', id)
+const cancelOrder = (id, accessToken) => {
+    return axios.put('/api/cancel-order', { id: id, accessToken: `Bearer ${accessToken}` })
 
 }
 
-const deleteOrder = (id) => {
-    return axios.delete('/api/delete-order/' + id)
+const deleteOrder = (id, accessToken) => {
+    return axios.delete('/api/delete-order/' + id, { data: { accessToken: `Bearer ${accessToken}` } })
 
 }
 

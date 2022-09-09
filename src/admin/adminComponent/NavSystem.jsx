@@ -21,7 +21,8 @@ export const NavSystem = () => {
     return (
         <>
             <div className="topnav">
-                <div className='admin-title'>Admin</div>
+                {/* <div className='admin-title'>Admin</div> */}
+                <NavLink className='admin-title' to={`/system/${id}`}>Admin</NavLink>
                 <NavLink to={`/system/user-manage/${id}`}>Người dùng</NavLink>
                 <NavLink to={`/system/product-manage/${id}`}>Sản phẩm</NavLink>
                 <NavLink to={`/system/order-manage/${id}`}>Đơn hàng</NavLink>

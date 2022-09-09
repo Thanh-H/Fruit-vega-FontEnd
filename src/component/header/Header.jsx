@@ -30,6 +30,7 @@ export const Header = (props) => {
 
     let userName = useSelector((state => state.auth.login.userInfor?.userName))
     let isAdmin = useSelector((state) => state.auth.login.userInfor?.isAdmin)
+    let userId = useSelector((state => state.auth.login.userInfor?._id))
 
     useEffect(() => {
         setOpenCart(opencartFromParent)
@@ -45,7 +46,7 @@ export const Header = (props) => {
             setOpenCart(false)
             setOpenSearch(false)
         }
-        id === 'admin' && navigate('/system')
+        id === 'admin' && navigate(`/system/${userId}`)
         closeCartFromDetailPro()
     }
     let handleGoToLoginPage = () => {

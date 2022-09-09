@@ -10,9 +10,12 @@ import { useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFloppyDisk, faPenToSquare } from '@fortawesome/free-regular-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { useSelector } from 'react-redux'
+
 
 const mdParser = new MarkdownIt(/* Markdown-it options */);
 export const ProductManage = () => {
+    let accessToken = useSelector((state => state.auth.login.userInfor?.accessToken))
     let [id, setId] = useState()
     let [productType, setProductType] = useState('clothes')
     let [subProductType, setSubProductType] = useState('')
@@ -117,22 +120,21 @@ export const ProductManage = () => {
 
     ////Create new product
     let handleCreateNewProduct = async () => {
-        let res = await createANewProduct(
-            {
-                productType,
-                subProductType,
-                productTitle,
-                productCode,
-                currentPrice,
-                oldPrice,
-                inStock,
-                arrSize,
-                arrColor,
-                arrImage,
-                contentMarkdown,
-                contentHTML,
-            }
-        )
+        let newData = {
+            productType,
+            subProductType,
+            productTitle,
+            productCode,
+            currentPrice,
+            oldPrice,
+            inStock,
+            arrSize,
+            arrColor,
+            arrImage,
+            contentMarkdown,
+            contentHTML,
+        }
+        let res = await createANewProduct(newData, accessToken)
         if (res && res.errCode === 0) {
             setCount(++count)
             toast.success('Product has been created')
@@ -167,7 +169,7 @@ export const ProductManage = () => {
 
 
     let handleUpdateProduct = async () => {
-        let res = await updateProductByIdService({
+        let newData = {
             id,
             productType,
             subProductType,
@@ -181,7 +183,8 @@ export const ProductManage = () => {
             arrImage,
             contentMarkdown,
             contentHTML,
-        })
+        }
+        let res = await updateProductByIdService(newData, accessToken)
         if (res && res.errCode === 0) {
             setCount(++count)
             toast.success('Product has been update')
@@ -195,7 +198,7 @@ export const ProductManage = () => {
     }
     ////Delete Product
     let handleDeleteProduct = async (id) => {
-        let res = await deleteProductService(id)
+        let res = await deleteProductService(id, accessToken)
         if (res && res.errCode === 0) {
             setCount(++count)
             toast.success(`${res.errMessage}`)
@@ -208,6 +211,12 @@ export const ProductManage = () => {
     let handleCancel = () => {
         hanldeClearState()
     }
+    ///build value default of sub productype
+    useEffect(() => {
+        if (productType == 'clothes') { setSubProductType('trousers') }
+        if (productType == 'keyChain') { setSubProductType('key-plastic') }
+        if (productType == 'watch') { setSubProductType('w-metal') }
+    }, [productType])
 
     return (
         <div className="user-manage-container">
@@ -229,7 +238,7 @@ export const ProductManage = () => {
                             onChange={(e) => setSubProductType(e.target.value)}  >
                             <option value={'trousers'}>Quần</option>
                             <option value={'shirt'}>Áo</option>
-                            <option value={'coat'}>Ao khóa</option>
+                            <option value={'coat'}>Ao khoác</option>
                         </select>}
                         {productType === 'keyChain' && <select value={subProductType} className="form-select"
                             onChange={(e) => setSubProductType(e.target.value)}  >

@@ -9,18 +9,26 @@ import { useState } from 'react'
 export const ProductByType = () => {
     let { productType } = useParams()
 
+
+
     let [nameProduct, setNameProduct] = useState()
     useEffect(() => {
         if (productType === 'keyChain') {
             setNameProduct('Móc khóa')
+
         }
         if (productType === 'clothes') {
             setNameProduct('Quần áo')
+
         }
         if (productType === 'watch') {
             setNameProduct('Đồng hồ')
+
         }
+
     }, [productType])
+    document.title = `${nameProduct}`
+
     return (
         <div className='product-by-type-container'>
             <Header />

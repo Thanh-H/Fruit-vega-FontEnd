@@ -123,21 +123,21 @@ export const ProductManage = () => {
 
     ////Create new product
     let handleCreateNewProduct = async () => {
-
+        let newData = {
+            productType,
+            productTitle,
+            productCode,
+            currentPrice,
+            oldPrice,
+            inStock,
+            arrSize,
+            arrImage,
+            arrTitleImage,
+            contentMarkdown,
+            contentHTML,
+        }
         let res = await createANewProduct(
-            {
-                productType,
-                productTitle,
-                productCode,
-                currentPrice,
-                oldPrice,
-                inStock,
-                arrSize,
-                arrImage,
-                arrTitleImage,
-                contentMarkdown,
-                contentHTML,
-            }
+
         )
         if (res && res.errCode === 0) {
             setCount(++count)
