@@ -33,6 +33,7 @@ export const Cart = (props) => {
 
     let arrProduct = useSelector((state => state.product.cart?.cartView))
     let total = useSelector((state => state.product.cart?.total))
+    let quantity = useSelector((state => state.product.cart?.quantity))
 
     let handleDeleteProductFromCart = (index) => {
         deleteProductInCart(index, dispatch)
@@ -88,6 +89,7 @@ export const Cart = (props) => {
 
     // Build data select-province end.
 
+
     // Build data order for send request to sever BEGIN:
     let [nameCustomer, setNameCustomer] = useState()
     let [emailCustomer, setEmailCustomer] = useState()
@@ -101,9 +103,12 @@ export const Cart = (props) => {
             nameCustomer: nameCustomer,
             emailCustomer: emailCustomer,
             phoneNumber: phoneNumber,
+            quantity: quantity,
+            total: total,
             address: `${subAddress}, ${selectedvillage.value}, ${selectedDistrict.value}, ${selectedProvince.value}`,
-            node: note
+            note: note
         }
+        console.log(DataOder)
         let res = await createANewOrder(DataOder)
         if (res && res.errCode === 0) {
             toast.success('Chúc mừng bạn đã đặt hàng thành công, Vui lòng đợi 1 cuộc điện thoại xác nhận từ cửa hàng chúng tôi,xin cảm ơn')

@@ -48,9 +48,29 @@ const createANewOrder = (data) => {
     return axios.post('/api/create-new-order', data)
 }
 
+const getAllOrdersService = () => {
+    return axios.get('/api/get-all-orders')
+}
+
+const confirmOrder = (id) => {
+    return axios.put('/api/confirm-order', id)
+
+}
+const cancelOrder = (id) => {
+    return axios.put('/api/cancel-order', id)
+
+}
+
+const deleteOrder = (id) => {
+    return axios.delete('/api/delete-order/' + id)
+
+}
+
+
+
 
 export {
     handleLoginService, handleRegisterService, handleLogOutService, getAllUserService, deleteUserService,
     updateUserService, createANewProduct, getAllProductService, deleteProductService, updateProductByIdService,
-    getProductByIdService, createANewOrder
+    getProductByIdService, createANewOrder, getAllOrdersService, confirmOrder, cancelOrder, deleteOrder
 }
